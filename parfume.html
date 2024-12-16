@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calibre Parfum</title>
+<style>
+  @import url(https://db.onlinewebfonts.com/c/88ec722aea6da3c9f67189591d5f3a6e?family=Batangas);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Batangas";
+}
+
+body {
+  font-family: "Batangas";
+  line-height: 1.6;
+  background-color: #f4f4f4;
+  scroll-behavior: smooth; /* Sayfada smooth scroll */
+}
+/* Header Section */
+header {
+  background-color: transparent;
+  padding: 15px 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 1000; /* Diğer içeriklerin üstünde olacak şekilde z-index belirliyoruz */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  transition: background-color 0.3s ease; /* Geçiş efekti */
+}
+#header.scrolled {
+  background-color: rgba(185, 140, 111, 0.26);
+  backdrop-filter: blur(15px);
+  box-shadow: 1px 3px 6px gray;
+}
+
+.logo {
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 12vw;
+}
+.menu-toggle {
+  display: none; /* Varsayılan olarak gizle */
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 25px;
+  cursor: pointer;
+  padding-right: 20px;
+  z-index: 1050;
+}
+
+.menu-toggle div {
+  height: 4px;
+  background-color: white;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+/* Hamburger menü açıldığında çubuğun dönüşümü */
+.menu-toggle {
+  display: none;
+}
+
+.nav-links ul li a {
+  color: black;
+  font-size: 22px;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: 80px;
+  position: relative;
+}
+
+.nav-links ul li a::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px; /* Line thickness */
+  background-color: black;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.nav-links ul li a:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: center;
+}
+
+.nav-links ul {
+  display: flex;
+}
+
+.nav-links ul li {
+  display: inline-block;
+  margin: 0 20px;
+}
+
+/* Hamburger menü açık olduğunda sağdan kayarak gelmesi */
+.nav-links {
+  display: flex;
+  justify-content: space-around;
+}
+
+.nav-links.active {
+  display: block;
+  position: fixed;
+  top: 6.5vh;
+  width: 100%;
+  background-color: rgba(128, 0, 128, 0.829);
+  backdrop-filter: blur(6px);
+  z-index: 999;
+  transition: transform 0.3s ease;
+  transform: translateY(100%);
+}
+
+.nav-links.active ul {
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav-links.active ul li {
+  margin: 20px 0;
+}
+
+.nav-links.active ul li a {
+  color: black;
+  font-size: 22px;
+  text-transform: uppercase;
+  padding: 10px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-links.active ul li a:hover {
+  background-color: #f4f4f4;
+  color: #333;
+  border-radius: 15px;
+}
+
+/* Home Section */
+#home {
+  background-size: cover;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+#home h1 {
+  font-size: 4em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#home p {
+  font-size: 1.5em;
+  font-weight: 300;
+}
+/* Modal Pencere */
+.modalWindow {
+  display: none;  /* Modal başlangıçta gizli */
+  position: fixed;
+  z-index: 1; /* Üstteki katman */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Yarı şeffaf arka plan */
+}
+
+/* Modal içerik kutusu */
+.modalWindow  .modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+}
+
+/* Kapatma butonu */
+.modalWindow  .close {
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 25px;
+}
+
+.modalWindow  .close:hover,
+.modalWindow  .close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* About Section */
+.about-section {
+  padding: 50px 20px;
+  background-color: #f9f3e8;
+  color: #333;
+}
+
+.about-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.about-section .section-title {
+  font-size: 36px;
+  font-weight: 600;
+  text-align: center;
+  color: #2c2c2c;
+  margin-bottom: 20px;
+}
+
+.about-section .section-description {
+  font-size: 18px;
+  line-height: 1.6;
+  text-align: center;
+  color: #555;
+  margin-bottom: 30px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Team Member Section */
+.about-section .team {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  gap: 20px;
+}
+
+.about-section .team-member {
+  text-align: center;
+  margin: 0 20px;
+}
+
+.about-section .team-photo {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 3px solid #b98c6f;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.about-section .team-name {
+  font-size: 22px;
+  font-weight: 500;
+  color: #2c2c2c;
+}
+
+.about-section .team-role {
+  font-size: 16px;
+  color: #777;
+}
+
+/* Contact Section */
+.contact-section {
+  background-color: #fff8e1;
+  color: #4a4a4a;
+  text-align: center;
+  height: 90vh;
+}
+
+.contact-section .container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contact-section .section-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #b98c6f; /* Elegant gold */
+  margin-bottom: 15px;
+}
+
+.contact-section .section-description {
+  font-size: 18px;
+  color: #777;
+}
+
+.contact-section .contact-form .form-group {
+  text-align: left;
+}
+
+.contact-section .contact-form label {
+  font-size: 16px;
+  color: #b98c6f;
+}
+
+.contact-section .contact-form input,
+.contact-section .contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 5px;
+  font-size: 16px;
+  border: 1px solid #e1e1e1; /* Light grey border */
+  border-radius: 5px;
+  background-color: #fff;
+}
+.contact-section .contact-form textarea {
+  resize: none;
+  height: 15vh;
+}
+.contact-section .contact-form input:focus,
+.contact-section .contact-form textarea:focus {
+  outline: none;
+  border-color: #b98c6f; /* Elegant gold border on focus */
+}
+
+.contact-section .contact-form button.submit-btn {
+  padding: 12px 30px;
+  background-color: #b98c6f; /* Elegant gold button */
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contact-section .contact-form button.submit-btn:hover {
+  background-color: #a57a4d; /* Darker gold on hover */
+}
+
+/* Social Media Icons */
+.contact-section .social-links {
+  margin-top: 30px;
+}
+
+.contact-section .social-links p {
+  font-size: 16px;
+  color: #4a4a4a;
+  margin-bottom: 15px;
+}
+
+.contact-section .social-icon {
+  margin: 0 10px;
+  font-size: 24px;
+  color: #b98c6f; /* Elegant gold color for icons */
+  transition: color 0.3s ease;
+}
+
+.contact-section .social-icon:hover {
+  color: #a57a4d; /* Darker gold on hover */
+}
+
+/* PRoducts Section */
+.product-section {
+  background-color: #f9f3e8;
+  color: white;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.product-section h2 {
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.product-section .section-description {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 40px;
+}
+
+/* Filter Dropdown */
+.product-section .filter-container {
+  margin-bottom: 40px;
+}
+
+.product-section #category-select {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+/* Product Cards Container */
+.product-section .product-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 0;
+}
+
+/* Individual Product Card Styling */
+.product-section .product-card {
+  position: relative;
+  width: 350px;
+  height: 250px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  padding: 5px;
+  text-align: center;
+  transform: scale(1);
+}
+
+.product-section .product-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+/* Image Inside the Card */
+.product-section .product-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: opacity 0.3s ease;
+}
+
+/* Displaying the Info on Hover */
+.product-section .product-card:hover .card-info {
+  opacity: 1;
+  visibility: visible;
+}
+.product-section .product-card .card-info {
+  border-radius: 10px;
+  width: 350px;
+  height: 250px;
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  background-color: rgba(255 255 255 / 26%);
+  backdrop-filter: blur(15px);
+  font-size: 16px;
+  border-radius: 0 0 10px 10px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.product-section .product-card .card-info .qiymet{
+  text-decoration: line-through;
+  text-decoration-color: red; 
+  text-decoration-thickness: 2px; 
+}
+.product-section .quantity-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.product-section .quantity-btn {
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.product-section .quantity-btn:hover {
+  background-color: #ddd;
+}
+
+.product-section .quantity-btn:active {
+  background-color: #ccc;
+}
+
+.product-section .quantity-value {
+  font-size: 1.5rem;
+  margin: 0 10px;
+  color: black;
+}
+
+/* Button Styling */
+.product-section .buy-now {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1vh;
+}
+
+.product-section .buy-now:hover {
+  background-color: #ff4e3a;
+}
+/* Product Card Order */
+#cart {
+  position: fixed; /* Sepet ekranın sağ üst köşesinde sabit kalacak */
+  top: 10vh;
+  right: 3px;
+  width: 300px;
+  max-height: 80vh; /* Yüksekliği ekranın %80'i kadar sınırlı */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  display: none; /* Başlangıçta sepet gizli */
+  z-index: 1000; /* Sepet tüm içeriklerin üstünde görünsün */
+  overflow-y: auto; /* Eğer içerik uzarsa kaydırılabilir */
+}
+
+/* Sepet Başlığı */
+#cart h2 {
+  text-align: center;
+  font-size: 1.5em;
+  margin-bottom: 15px;
+}
+
+/* Sepetteki Ürünler */
+.cart-item {
+  display: flex;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.cart-item img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.cart-item-info {
+  flex: 1;
+}
+
+.cart-item-info h4 {
+  font-size: 1.2em;
+  margin: 0;
+}
+
+.cart-item-info p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.cart-item-info .quantity {
+  font-weight: bold;
+}
+
+/* Checkout Butonu */
+#checkout-btn {
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1em;
+  margin-top: 15px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#checkout-btn:hover {
+  background-color: #218838;
+}
+.close-cart-btn {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 30px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+}
+
+.close-cart-btn:hover {
+  background-color: #e53935;
+}
+/* Sepet Boşsa Mesaj */
+#cart-empty-message {
+  text-align: center;
+  font-size: 1.2em;
+  color: #777;
+  display: none;
+}
+
+#cart-empty-message.show {
+  display: block;
+}
+
+/* Footer Section */
+
+.footer {
+  background: linear-gradient(
+    135deg,
+    #5e4b8b,
+    #3e3a55
+  ); /* Lüks mor ve gri gradient */
+  color: #f1f1f1;
+  padding: 40px 0;
+  font-family: "Lora", serif;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Hafif gölge etkisi */
+  border-top: 5px solid #ffb400; /* Altın sarısı şerit */
+}
+
+/* İçerik düzeni */
+.footer .footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Sol alan */
+.footer .footer-left p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #f1f1f1;
+  opacity: 0.8;
+}
+
+/* Ortada metin */
+.footer .footer-center p {
+  font-size: 20px;
+  font-style: italic;
+  color: #ffb400; /* Altın sarısı metin */
+  letter-spacing: 2px;
+}
+
+/* Sağdaki bağlantılar */
+.footer .footer-right ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 30px;
+}
+
+.footer .footer-right ul li {
+  display: inline;
+}
+
+.footer .footer-right ul li a {
+  text-decoration: none;
+  color: #ccc;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer .footer-right ul li a:hover {
+  color: #ffb400; /* Hover efekti */
+  transform: scale(1.1); /* Hoverda büyüme efekti */
+}
+
+/* Alt açıklama */
+.footer .footer-bottom {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #bbb;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.footer .footer-bottom p {
+  font-style: italic;
+  opacity: 0.8;
+}
+
+/* Slider Section */
+.slider-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  margin: auto;
+  overflow: hidden;
+}
+
+.slider-container .slider {
+  display: flex;
+  transition: transform 1s ease;
+}
+
+.slider-container .slide {
+  min-width: 100%;
+  transition: transform 0.5s ease;
+}
+
+.slider-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.slider-container .prev,
+.slider-container .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 30px;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.slider-container .prev {
+  left: 10px;
+  transition: 1s;
+}
+
+.slider-container .next {
+  right: 10px;
+}
+
+.slider-container:hover .prev,
+.slider-container:hover .next {
+  opacity: 1;
+}
+
+/* Mobile-First CSS */
+@media (max-width: 768px) {
+  header {
+    width: 100%;
+    border-radius: 0;
+    margin: 0;
+    justify-content: space-between;
+    background-color: gray;
+  }
+  .about-section > img:first-child {
+    right: -21px;
+  }
+  .logo img {
+    width: 25vw;
+  }
+  #home {
+    margin-top: 7.5vh;
+  }
+  body {
+    width: 100%;
+  }
+  .slider-container {
+    width: 100%;
+    height: 100%;
+  }
+  .product-section .product-cards-container {
+    grid-template-columns: 350px;
+    place-items: center;
+  }
+  .nav-links {
+    display: none; /* Mobilede menüyü gizle */
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    padding-top: 80px;
+  }
+
+  .nav-links.active {
+    display: block;
+    transform: translateX(0);
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav-links ul {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .nav-links ul li {
+    margin: 15px 0;
+  }
+
+  .nav-links ul li a {
+    color: white;
+    font-size: 40px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    padding: 12px;
+    display: block;
+    transition: background-color 0.3s ease;
+  }
+  .nav-links.active ul li a {
+    font-size: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+  }
+  .nav-links ul li a:hover {
+    background-color: #444;
+  }
+  .about-images {
+    flex-direction: column; /* Mobilde resimleri dikey yerleştir */
+    gap: 10px;
+  }
+
+  .about-image-container {
+    width: 80%; /* Resimler daha geniş */
+    height: auto;
+  }
+
+  .section-title {
+    font-size: 2em; /* Başlık mobilde daha küçük */
+  }
+
+  .section-description {
+    font-size: 1em; /* Açıklama yazısı daha küçük */
+  }
+
+  .team {
+    flex-direction: column; /* Takım üyelerini dikeyde düzenle */
+    align-items: center;
+  }
+
+  .team-member {
+    width: 80%; /* Üye kartları mobilde daha geniş */
+  }
+  .footer .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .footer .footer-right ul {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+@media (max-width: 480px) {
+  .about-images {
+    gap: 5px;
+  }
+
+  .team-member {
+    width: 90%;
+  }
+
+  .team-photo {
+    width: 80px;
+    height: 80px;
+  }
+
+  .section-title {
+    font-size: 1.7em;
+  }
+}
+
+</style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header id="header">
+      <div class="logo">
+        <img src="./assets/Calibre.png" alt="" />
+      </div>
+      <div class="menu-toggle" id="menu-toggle">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="nav-links" id="nav-links">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#products">Products</a></li>
+        </ul>
+      </div>
+    </header>
+    
+<!-- Home Section -->
+    <section id="home" class="section">
+      <div class="slider-container">
+        <div class="slider">
+          <div class="slide">
+            <img src="./assets/1.jpg" alt="Image 1" />
+          </div>
+          <div class="slide">
+            <img src="./assets/2.jpg" alt="Image 2" />
+          </div>
+          <div class="slide">
+            <img src="./assets/3.jpg" alt="Image 3" />
+          </div>
+        </div>
+        <span class="prev" onclick="moveSlide(-1)"><i class="fa-solid fa-chevron-left"></i></span>
+        <span class="next" onclick="moveSlide(1)"><i class="fa-solid fa-chevron-right"></i></i></span>
+      </div>
+    </section>
+
+<!-- About Sesction -->
+<section id="about" class="about-section">
+  <div class="container">
+      <h2 class="section-title">About Us</h2>
+      <p class="section-description">We are a team that passionately directs the world of perfumes, with each perfume having a story behind it. We create the most elegant fragrances from natural and high-quality ingredients, exploring until we find the perfume that impresses you.</p>
+
+      <div class="team">
+          <div class="team-member">
+              <img src="./assets/Ali.jpg" alt="Perfume Designer" class="team-photo">
+              <h3 class="team-name">Ali Ahmadov</h3>
+              <p class="team-role">Founder</p>
+          </div>
+      </div>
+  </div>
+</section>
+    
+<!-- Contact Section -->
+<section id="contact" class="contact-section">
+  <div class="container">
+    <h2 class="section-title">Contact Us</h2>
+    <p class="section-description">We would love to hear from you! Whether you have questions, feedback, or just want to say hello, feel free to reach out.</p>
+
+    <!-- İletişim Formu -->
+    <form class="contact-form">
+      <div class="form-group">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" placeholder="Enter your name" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" placeholder="Enter your email" required />
+      </div>
+      <div class="form-group">
+        <label for="message">Your Message:</label>
+        <textarea id="message" placeholder="Write your message here" required></textarea>
+      </div>
+      <button type="submit" class="submit-btn">Send Message</button>
+    </form>
+
+    <!-- Sosyal Medya Bağlantıları -->
+    <div class="social-links">
+      <p>Follow us on:</p>
+      <a href="#" class="social-icon facebook"><i class="fab fa-facebook"></i></a>
+      <a href="#" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" class="social-icon twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" class="social-icon pinterest"><i class="fab fa-pinterest"></i></a>
+    </div>
+  </div>
+</section>
+    
+<!-- Product Section -->
+<section id="products" class="product-section">
+  <h2>Our Products</h2>
+  <p class="section-description">Discover our exquisite range of perfumes crafted with passion and precision. Each fragrance tells a unique story, waiting for you to explore.</p>
+
+  <!-- Kategoriyi Seçmek İçin Filtreleme Dropdown Menüsü -->
+  <div class="filter-container">
+    <label for="category-select">Choose a category:</label><br>
+    <select id="category-select">
+      <option value="all">All Products</option>
+      <option value="men">Men's Perfumes</option>
+      <option value="women">Women's Perfumes</option>
+    </select>
+  </div>
+  <!-- Product Cards Container -->
+  <div id="product-cards" class="product-cards-container">
+    <!-- Product Cards will be dynamically inserted here -->
+  </div>
+</section>
+<!-- Shopping Cart Section -->
+<section id="cart" class="cart-section" style="display: none;">
+  <h2>Sifariş</h2>
+  <button id="close-cart-btn" class="close-cart-btn">X</button>
+  <div id="cart-items" class="cart-items-container">
+    <!-- Cart items will be dynamically inserted here -->
+  </div>
+  <button id="checkout-btn" class="checkout-btn">Sifarişi təsdiqlə</button>
+  <div id="cart-empty-message" class="empty-message">Sifariş yoxdur.</div>
+</section>
+
+<!-- Modal Pencere -->
+<div id="modal" class="modalWindow">
+  <div class="modal-content">
+    <span id="modal-close" class="close">&times;</span>
+    <p id="modal-message"></p>
+  </div>
+</div>
+
+
+
+<!-- Footer Section -->
+<footer class="footer">
+  <div class="footer-content">
+      <div class="footer-left">
+          <p>&copy; 2024 CALIBRE.AZ - All Rights Reserved</p>
+      </div>
+      <div class="footer-center">
+          <p>Bringing Luxury Scents to Your Life</p>
+      </div>
+      <div class="footer-right">
+          <ul>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+              <li><a href="#">Contact Us</a></li>
+          </ul>
+      </div>
+  </div>
+  <div class="footer-bottom">
+      <p>Crafted with love, elegance, and precision.</p>
+  </div>
+</footer>
+
+
+<script>
+  // Modal Pencereler
+const modal = document.getElementById('modal');
+const modalMessage = document.getElementById('modal-message');
+const modalCloseButton = document.getElementById('modal-close');
+
+// Modal'ı gösterme fonksiyonu
+function showModalWindow(message) {
+    modalMessage.textContent = message;  
+    modal.style.display = 'block';  
+    setTimeout(function() {
+        modal.style.display = 'none';
+    }, 2000);
+}
+
+// Modal'ı kapama fonksiyonu
+modalCloseButton.addEventListener('click', function() {
+    modal.style.display = 'none';  // Modal'ı gizle
+});
+
+// Modal dışında bir yere tıklandığında modal'ı kapama
+window.addEventListener('click', function(event) {
+    if (event.target === modal) {
+        modal.style.display = 'none';  // Modal'ı gizle
+    }
+});
+// Toggle Menu
+const menuToggle = document.getElementById('menu-toggle');
+const navLinks = document.getElementById('nav-links');
+const menuLinks = document.querySelectorAll('.nav-links a');
+
+
+menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+});
+
+menuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+    });
+});
+
+window.addEventListener('scroll', function () {
+    const header = document.getElementById('header');
+
+    // Eğer ekran genişliği 768px'den küçükse, işlevi durdur
+    if (window.innerWidth > 768) {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    }
+});
+
+// Smooth Scroll
+  // Custom smooth scrolling function
+  function slowScrollTo(target, duration) {
+    const targetPosition = target.offsetTop;
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    let startTime = null;
+
+    // Animation function
+    function animation(currentTime) {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const run = ease(timeElapsed, startPosition, distance, duration);
+      window.scrollTo(0, run);
+      if (timeElapsed < duration) {
+        requestAnimationFrame(animation);
+      }
+    }
+
+    // Easing function for smooth deceleration
+    function ease(t, b, c, d) {
+      const ts = (t/=d)*t;
+      const tc = ts*t;
+      return b+c*(tc + -3*ts + 3*t);
+    }
+
+    // Start the animation
+    requestAnimationFrame(animation);
+  }
+
+  // Attach slow scroll to each link
+  const links = document.querySelectorAll('.nav-links a');
+  links.forEach(link => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      const targetId = link.getAttribute('href').substring(1);
+      const target = document.getElementById(targetId);
+      slowScrollTo(target, 1500); // 1500ms duration for smooth scroll
+    });
+  });
+
+
+// Dinamik Ürünler
+
+
+// Function to fetch products and display them
+async function fetchProducts() {
+    const token = "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"; 
+    const repoOwner = "ferhadsultan98";
+    const repoName = "infos";
+    const filePath = "projects.json"; 
+    const url = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`;
+
+    try {
+        const response = await fetch(url, {
+            headers: {
+                'Authorization': `token ${token}`,
+            },
+        });
+
+        const data = await response.json();
+        if (data.content) {
+            const decodedContent = atob(data.content);
+            const products = JSON.parse(decodedContent) || [];
+
+            // Get selected category
+            const selectedCategory = document.getElementById('category-select').value;
+
+            // Filter products by selected category
+            const filteredProducts = selectedCategory === 'all'
+                ? products
+                : products.filter(product => product.category === selectedCategory);
+
+            // Display the products in the product-cards container
+            displayProducts(filteredProducts);
+        }
+    } catch (error) {
+        console.error("Error fetching products:", error);
+    }
+}
+
+// Function to display products
+let cart = [];  // Sepetteki ürünlerin listesini tutacak
+
+// Sepeti kapatma fonksiyonu
+document.getElementById("close-cart-btn").addEventListener("click", function() {
+    const cartSection = document.getElementById("cart");
+    cartSection.style.display = "none"; // Sepeti gizle
+});
+
+// Sepeti açma fonksiyonu
+function openCart() {
+    const cartSection = document.getElementById("cart");
+    cartSection.style.display = "block"; // Sepeti göster
+}
+
+function updateCart() {
+    const cartItemsContainer = document.getElementById("cart-items");
+    cartItemsContainer.innerHTML = ''; // Sepeti temizle
+
+    cart.forEach(product => {
+        const cartItem = document.createElement("div");
+        cartItem.classList.add("cart-item");
+
+        // Fiyat ve miktar kontrolü
+        const price = parseFloat(product.price);
+        const quantity = product.quantity;
+        
+        if (isNaN(price) || isNaN(quantity)) {
+            console.error("Invalid price or quantity", product);
+        }
+
+        // Toplam fiyatı hesapla (fiyat ve miktar geçerliyse)
+        const totalPrice = (isNaN(price) || isNaN(quantity)) ? 0 : price * quantity;
+
+        cartItem.innerHTML = `
+            <img src="${product.image}" alt="${product.name}" class="cart-item-image" />
+            <div class="cart-item-info">
+                <h4>${product.name}</h4>
+                <p>Quantity: ${quantity}</p>
+                <p>Price: ${totalPrice.toFixed(2)}</p>
+            </div>
+        `;
+
+        cartItemsContainer.appendChild(cartItem);
+    });
+
+    // Sepet görünürlüğünü kontrol et
+    const cartSection = document.getElementById("cart");
+    cartSection.style.display = cart.length > 0 ? "block" : "none"; 
+
+    // Sepet boşsa mesajı göster
+    const emptyMessage = document.getElementById("cart-empty-message");
+    if (emptyMessage) {
+        emptyMessage.classList.toggle("show", cart.length === 0); 
+    }
+}
+
+// Ürünleri sepete ekleme ve sepeti açma
+function addToCart(product) {
+    // Sepette bu ürün zaten varsa, miktarını arttır
+    const existingProduct = cart.find(item => item.id === product.id);
+    if (existingProduct) {
+        existingProduct.quantity += 1; // Miktarı bir arttır
+    } else {
+        cart.push({...product, quantity: 1}); // Yeni ürün ekle, miktar 1
+    }
+
+    updateCart(); // Sepeti güncelle
+}
+
+// "Buy Now" butonuna tıklama işlemi
+function handleBuyNow(product) {
+    // "Buy Now" butonunda ürün miktarını 1 arttır
+    addToCart(product);
+}
+
+// "Checkout" butonuna tıklama işlemi
+document.getElementById("checkout-btn").addEventListener("click", function() {
+   showModalWindow("Proceeding to checkout...");
+});
+
+// Ürünleri görüntüleme
+function displayProducts(products) {
+    const productContainer = document.getElementById("product-cards");
+    productContainer.innerHTML = ''; // Mevcut ürünleri temizle
+
+    products.forEach(product => {
+        const productCard = document.createElement("div");
+        productCard.classList.add("product-card");
+
+        // HTML içeriği oluşturuluyor
+        productCard.innerHTML = `
+            <img src="${product.image}" alt="${product.name}" />
+            <div class="card-info">
+                <h3>${product.name}</h3>
+                <p class="qiymet">${product.price}</p>
+                <p>${product.discount || 'N/A'}</p>
+                <button class="buy-now">Buy Now</button>
+            </div>
+        `;
+
+        // "Buy Now" butonuna tıklanması için event listener ekle
+        const buyNowButton = productCard.querySelector(".buy-now");
+        buyNowButton.addEventListener("click", function() {
+            handleBuyNow(product); // Burada product doğru şekilde iletiliyor
+        });
+
+        productContainer.appendChild(productCard);
+    });
+}
+
+// Order Please
+document.getElementById("checkout-btn").addEventListener("click", async function() {
+    const orderData = JSON.stringify(cart, null, 2); // Sepetteki veriyi JSON formatında al
+    const token = "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"; // GitHub token
+    const repoOwner = "ferhadsultan98";  // GitHub repository sahibi
+    const repoName = "infos";  // Repository adı
+    const filePath = "order.json";  // Güncellenecek dosya yolu
+    const branch = "main";  // Hedef şube
+
+    try {
+        // 1. GitHub API'sinden mevcut dosyanın SHA bilgisini al
+        const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
+            method: "GET",
+            headers: {
+                "Authorization": `token ${token}`,
+                "Content-Type": "application/json"
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error("Error fetching file data");
+        }
+
+        const data = await response.json();
+
+        // Eğer dosya boşsa (content olmayabilir), o zaman empty array kullan
+        let currentData = data.content ? JSON.parse(atob(data.content)) : [];
+        
+
+        // 2. Sipariş verisini mevcut verilere ekle
+        const updatedData = [...currentData, ...JSON.parse(orderData)];
+
+        // 3. Dosyayı güncellemek için PUT isteği gönder
+        const updateResponse = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
+            method: "PUT",
+            headers: {
+                "Authorization": `token ${token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                message: "Add new order data to order.json",  // Commit mesajı
+                content: btoa(JSON.stringify(updatedData, null, 2)),  // Yeni veri base64 ile şifrele
+                sha: data.sha,  // Eski dosyanın sha değeri
+                branch: branch  // Hedef şube
+            })
+        });
+
+        if (!updateResponse.ok) {
+            throw new Error("Error updating file data");
+        }
+
+        const updateData = await updateResponse.json();
+        if (updateData.commit) {
+            console.log("Sipariş GitHub'a başarıyla gönderildi!");
+        } else {
+            console.log("Sipariş gönderilirken hata oluştu.");
+        }
+    } catch (error) {
+        console.error("Hata oluştu:", error);
+        alert("Sipariş kaydedilirken bir hata oluştu.");
+    }
+});
+
+// Ürünleri sayfa yüklendiğinde getir
+window.onload = fetchProducts;
+
+// Kategori seçildiğinde ürünleri filtrele
+document.getElementById("category-select").addEventListener("change", fetchProducts);
+
+
+
+
+
+
+
+
+// Slider
+let currentIndex = 0;
+
+const slides = document.querySelectorAll('.slide');
+const totalSlides = slides.length;
+
+function showSlide(index) {
+    if (index >= totalSlides) {
+        currentIndex = 0;
+    } else if (index < 0) {
+        currentIndex = totalSlides - 1;
+    } else {
+        currentIndex = index;
+    }
+
+    const slider = document.querySelector('.slider');
+    slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+}
+
+function moveSlide(step) {
+    showSlide(currentIndex + step);
+}
+
+setInterval(() => {
+    showSlide(currentIndex + 1);
+}, 3000);  // Slide interval in milliseconds
+
+showSlide(currentIndex);  // Initialize the first slide
+// Bu basit JavaScript animasyonu, sayfa tamamen yüklendiğinde animasyonları tetiklemeyi sağlar
+document.addEventListener("DOMContentLoaded", function () {
+    const sectionTitle = document.querySelector(".section-title");
+    const sectionDescription = document.querySelector(".section-description");
+    const teamMembers = document.querySelectorAll(".team-member");
+
+    sectionTitle.classList.add("fade-in");
+    sectionDescription.classList.add("fade-in");
+    teamMembers.forEach(member => member.classList.add("team-slide-in"));
+});
+
+// Formu gönderme ve basit doğrulama işlemi
+document.querySelector('.contact-form').addEventListener('submit', function (e) {
+    e.preventDefault(); // Sayfa yenilenmesini engelle
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+
+    if (name && email && message) {
+        console.log('Thank you for contacting us, ' + name + '! We will get back to you soon.');
+    } else {
+        console.log('Please fill out all fields before submitting.');
+    }
+});
+// Admin paneline yönlendirme (sadece /admin path'inde)
+if (window.location.pathname === '/admin') {
+    window.location.href = '/adminpanel.html'; 
+}
+</script>
+  </body>
+</html>
