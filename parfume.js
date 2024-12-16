@@ -1,3 +1,8 @@
+// Admin paneline yönlendirme (sadece /admin path'inde)
+if (window.location.pathname === '/admin') {
+    window.location.href = '/admin.html'; 
+}
+
 // Modal Pencereler
 const modal = document.getElementById('modal');
 const modalMessage = document.getElementById('modal-message');
@@ -373,7 +378,4 @@ document.querySelector('.contact-form').addEventListener('submit', function (e) 
         console.log('Please fill out all fields before submitting.');
     }
 });
-// Admin paneline yönlendirme (sadece /admin path'inde)
-if (window.location.pathname === '/admin') {
-    window.location.href = '/adminpanel.html'; 
-}
+
