@@ -109,7 +109,7 @@
 
       // GitHub'a ürün verisini JSON formatında gönderme
       async function updateProductListInGitHub(newProduct) {
-        const token = "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"; // GitHub token
+        const token = "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"; // GitHub token
         const repoOwner = "ferhadsultan98";
         const repoName = "infos";
         const filePath = "projects.json"; // JSON file path in the repo
