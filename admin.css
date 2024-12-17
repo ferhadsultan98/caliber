@@ -3,63 +3,91 @@
 /* Login Style  */
 /* Genel Stil */
 #login-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-/* Giriş Ekranı */
-.login-section {
-  width: 300px;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-#login-form:not(label){
-   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.login-section label {
-  display: block;
-  margin-bottom: 5px;
-}
-.login-section h2{
-  text-align: center;
-}
-.login-section input {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 15px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+#login-section {
+    width: 100%;
+    max-width: 400px;
+    background: #1A2226;
+    padding: 30px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    text-align: center;
 }
 
-.login-section button {
-  width: 100%;
-  padding: 10px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+#login-body .login-key {
+    font-size: 80px;
+    line-height: 100px;
+    background: -webkit-linear-gradient(#27EF9F, #0DB8DE);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.login-section button:hover {
-  background-color: #45a049;
+#login-body .login-title {
+    margin-top: 15px;
+    font-size: 30px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    color: #ECF0F5;
 }
 
-.login-section .error-message {
-  color: red;
-  text-align: center;
+#login-body .form-group {
+    margin-bottom: 20px;
+}
+
+#login-body label {
+    margin-bottom: 0px;
+}
+
+#login-body .form-control-label {
+    font-size: 12px;
+    color: #6C6C6C;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+#login-body input[type=text], #login-body input[type=password] {
+    background-color: #1A2226;
+    border: none;
+    border-bottom: 2px solid #0DB8DE;
+    font-weight: bold;
+    outline: 0;
+    margin-bottom: 20px;
+    padding-left: 0px;
+    color: #ECF0F5;
+}
+
+#login-body input[type=text]:focus, #login-body input[type=password]:focus {
+    border-color: inherit;
+    box-shadow: none;
+    background-color: #1A2226;
+}
+
+#login-body .btn-outline-primary {
+    border-color: #0DB8DE;
+    color: #0DB8DE;
+    border-radius: 0px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+#login-body .btn-outline-primary:hover {
+    background-color: #0DB8DE;
+}
+
+#login-body .loginbttm {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#login-body #error-message {
+    color: #FF4D4D;
+    margin-top: 15px;
 }
 
 /* Admin Panel */
