@@ -11,7 +11,7 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     localStorage.setItem('loggedIn', 'true');
     
     // Giriş ekranını gizle, admin panelini göster
-    document.getElementById('login-section').style.display = 'none';
+    document.getElementById('login-body').style.display = 'none';
     document.getElementById('admin-panel').style.display = 'block';
   } else {
     // Hatalı giriş, hata mesajını göster
