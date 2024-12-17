@@ -1,4 +1,22 @@
- // Modal Pencereler
+document.getElementById('login-form').addEventListener('submit', function(event) {
+  event.preventDefault(); // Formun sayfayı yenilemesini engelle
+
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+
+  if (username === 'admin' && password === '20242025') {
+    // Başarılı giriş
+    document.getElementById('login-section').style.display = 'none';
+    document.getElementById('admin-panel').style.display = 'block';
+  } else {
+    // Hatalı giriş
+    document.getElementById('login-error').style.display = 'block';
+  }
+});
+
+
+
+// Modal Pencereler
       const modal = document.getElementById("modal");
       const modalMessage = document.getElementById("modal-message");
       const modalCloseButton = document.getElementById("modal-close");
