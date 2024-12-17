@@ -5,7 +5,9 @@ document.getElementById('login-form').addEventListener('submit', function(event)
   const password = document.getElementById('password').value;
 
   if (username === 'admin' && password === '20242025') {
-    // Başarılı giriş
+    // Başarılı giriş, localStorage'da oturum bilgisi sakla
+    localStorage.setItem('loggedIn', 'true');
+    
     document.getElementById('login-section').style.display = 'none';
     document.getElementById('admin-panel').style.display = 'block';
   } else {
@@ -13,6 +15,22 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     document.getElementById('login-error').style.display = 'block';
   }
 });
+
+// Sayfa yüklendiğinde oturum kontrolü yap
+window.addEventListener('load', function() {
+  const loggedIn = localStorage.getItem('loggedIn');
+  
+  if (loggedIn === 'true') {
+    // Kullanıcı zaten giriş yapmış, login bölümünü gizle ve admin panelini göster
+    document.getElementById('login-section').style.display = 'none';
+    document.getElementById('admin-panel').style.display = 'block';
+  } else {
+    // Kullanıcı giriş yapmamış, login bölümünü göster
+    document.getElementById('login-section').style.display = 'block';
+    document.getElementById('admin-panel').style.display = 'none';
+  }
+});
+
 
 
 
