@@ -10,19 +10,39 @@
     <!-- Giriş Ekranı -->
     <div id="login-body">
     <div id="login-section" class="login-section">
-      <h2>Admin Panel</h2>
-      <form id="login-form">
-        <label for="username">İstifadəçi adı:</label>
-        <input type="text" id="username" required />
-        
-        <label for="password">Parol:</label>
-        <input type="password" id="password" required />
-        
-        <button type="submit">Giriş Yap</button>
-      </form>
-      <p id="login-error" class="error-message" style="display: none;">Yanlış istifadəçi adı və ya parol!</p>
+        <div class="col-lg-12 login-key">
+            <i class="fa fa-key" aria-hidden="true"></i>
+        </div>
+        <div class="col-lg-12 login-title">
+            ADMIN PANEL
+        </div>
+
+        <div class="col-lg-12 login-form">
+            <form id="login-form">
+                <div class="form-group">
+                    <label class="form-control-label" for="username">İstifadəçi adı:</label>
+                    <input type="text" id="username" class="form-control" required />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="password">Parol:</label>
+                    <input type="password" id="password" class="form-control" required />
+                </div>
+
+                <div class="col-lg-12 loginbttm">
+                    <div class="col-lg-6 login-btm login-text">
+                        <!-- Error Message -->
+                    </div>
+                    <div class="col-lg-6 login-btm login-button">
+                        <button type="submit" class="btn btn-outline-primary">Giriş Yap</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <p id="login-error" class="error-message" style="display: none;">Yanlış istifadəçi adı və ya parol!</p>
     </div>
-       </div>
+</div>
+
 
     <!-- Admin Paneli -->
     <div id="admin-panel" style="display: none;">
