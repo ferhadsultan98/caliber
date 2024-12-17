@@ -1,4 +1,57 @@
+ // Modal Pencereler
+      const modal = document.getElementById("modal");
+      const modalMessage = document.getElementById("modal-message");
+      const modalCloseButton = document.getElementById("modal-close");
 
+      // Modal'ı gösterme fonksiyonu
+      function showModalWindow(message) {
+        modalMessage.textContent = message;
+        modal.style.display = "block";
+        setTimeout(function () {
+          modal.style.display = "none";
+        }, 2000);
+      }
+
+      // Modal'ı kapama fonksiyonu
+      modalCloseButton.addEventListener("click", function () {
+        modal.style.display = "none"; // Modal'ı gizle
+      });
+
+      // Modal dışında bir yere tıklandığında modal'ı kapama
+      window.addEventListener("click", function (event) {
+        if (event.target === modal) {
+          modal.style.display = "none"; // Modal'ı gizle
+        }
+      });
+      // Function to hide all sections
+      function hideAllSections() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.style.display = "none";
+        });
+      }
+
+      // Function to show a specific section
+      function showSection(sectionId) {
+        hideAllSections();
+        document.getElementById(sectionId).style.display = "block";
+      }
+
+      // Event listeners for navbar
+      document
+        .getElementById("add-product-btn")
+        .addEventListener("click", function () {
+          showSection("add-product-section");
+        });
+
+      document
+        .getElementById("orders-btn")
+        .addEventListener("click", function () {
+          showSection("orders-section");
+        });
+
+      // Show "Add Product" section by default when the page loads
+      showSection("add-product-section");
     // Firebase SDK'yı import etme
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js';
     import { getDatabase, ref, set, push, get } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js';
