@@ -55,21 +55,21 @@ function toggleLoginState(isLoggedIn) {
           modal.style.display = "none"; // Modal'ı gizle
         }
       });
-      // Function to hide all sections
-      function hideAllSections() {
-        const sections = document.querySelectorAll(".section");
-        sections.forEach((section) => {
-          section.style.display = "none";
-        });
-      }
+     // Function to hide all sections
+function hideAllSections() {
+    const sections = document.querySelectorAll(".section");
+    sections.forEach((section) => {
+        section.style.display = "none";
+    });
+}
 
-      // Function to show a specific section
-      function showSection(sectionId) {
-        hideAllSections();
-        document.getElementById(sectionId).style.display = "block";
-      }
+// Function to show a specific section
+function showSection(sectionId) {
+    hideAllSections(); // First, hide all sections
+    document.getElementById(sectionId).style.display = "block"; // Then, show the specific section
+}
 
-      // Event listeners for navbar
+// Event listeners for navbar
 document.getElementById("add-product-btn").addEventListener("click", function () {
     showSection("add-product-section");
 });
@@ -78,18 +78,9 @@ document.getElementById("orders-btn").addEventListener("click", function () {
     showSection("orders-section");
 });
 
-// Function to show the selected section and hide the other
-function showSection(sectionId) {
-    // Hide both sections
-    document.getElementById("add-product-section").style.display = "none";
-    document.getElementById("orders-section").style.display = "none";
-
-    // Show the selected section
-    document.getElementById(sectionId).style.display = "block";
-}
-
 // Show "Add Product" section by default when the page loads
 showSection("add-product-section");
+
 
    
     // Firebase SDK'yı import etme
