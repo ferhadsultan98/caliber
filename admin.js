@@ -24,10 +24,12 @@ window.addEventListener('load', function() {
   if (loggedIn === 'true') {
     // Kullanıcı giriş yapmışsa, login ekranını gizle ve admin panelini göster
     document.getElementById('login-body').style.display = 'none';
+        document.getElementById('login-section').style.display = 'none';
     document.getElementById('admin-panel').style.display = 'block';
   } else {
     // Kullanıcı giriş yapmamışsa, login bölümünü göster
     document.getElementById('login-body').style.display = 'block';
+        document.getElementById('login-section').style.display = 'none';
     document.getElementById('admin-panel').style.display = 'none';
   }
 });
