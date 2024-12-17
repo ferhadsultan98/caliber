@@ -1,35 +1,41 @@
 @import url(https://db.onlinewebfonts.com/c/88ec722aea6da3c9f67189591d5f3a6e?family=Batangas);
-/* Genel Ayarlar */
 /* Genel container ayarları */
 #login-body {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f4f6f9;
+    background: linear-gradient(45deg, #4e73df, #1cc88a);
+    margin: 0;
 }
 
 /* Login panelinin stili */
-.login-section {
+#login-body #login-section {
     background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    max-width: 400px;
+    padding: 40px;
     width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
     text-align: center;
+    transition: transform 0.3s ease-in-out;
 }
 
-/* Başlık stili */
-#login-body h2 {
-    font-size: 28px;
+#login-body #login-section:hover {
+    transform: scale(1.05); /* Hover efekti */
+}
+
+/* Başlık stil */
+#login-body #login-section h2 {
+    font-size: 30px;
     color: #333;
-    margin-bottom: 20px;
-    font-weight: 600;
+    margin-bottom: 30px;
+    font-family: 'Arial', sans-serif;
+    font-weight: 700;
 }
 
-/* Etiketlerin stili */
-#login-body label {
+/* Etiketlerin stil ayarları */
+#login-body #login-section label {
     display: block;
     font-size: 16px;
     color: #666;
@@ -37,49 +43,48 @@
     text-align: left;
 }
 
-/* Input kutuları stili */
-#login-body input {
+/* Input gruplarının stil ayarları */
+#login-body #login-section input {
     width: 100%;
     padding: 12px;
     margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
     font-size: 16px;
-    box-sizing: border-box;
-    outline: none;
-    transition: border-color 0.3s ease;
+    background-color: #f8f9fc;
+    transition: all 0.3s ease;
 }
 
-/* Input kutusuna odaklanıldığında kenar rengi değişir */
-#login-body input:focus {
-    border-color: #007bff;
+#login-body #login-section input:focus {
+    border-color: #4e73df;
+    background-color: #fff;
+    outline: none;
 }
 
 /* Buton stili */
-#login-body button {
+#login-body #login-section button {
     width: 100%;
     padding: 12px;
-    background-color: #007bff;
+    background-color: #4e73df;
     color: white;
-    font-size: 16px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
+    font-size: 18px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-/* Buton hover efekti */
-#login-body button:hover {
-    background-color: #0056b3;
+#login-body #login-section button:hover {
+    background-color: #3b5db8;
 }
 
-/* Hata mesajı stili */
-#login-body .error-message {
+/* Hata mesajı */
+#login-body #login-section .error-message {
     color: red;
     font-size: 14px;
     margin-top: 15px;
     display: none;
-    text-align: left;
+    font-family: 'Arial', sans-serif;
 }
 
 
