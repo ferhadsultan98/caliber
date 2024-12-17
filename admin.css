@@ -21,10 +21,10 @@
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.login-section h2 {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .login-section label {
@@ -33,7 +33,7 @@
 }
 
 .login-section input {
-  width: 80%;
+  width: 100%;
   padding: 8px;
   margin-bottom: 15px;
   border: 1px solid #ddd;
