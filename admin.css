@@ -2,12 +2,12 @@
 /* Genel container ayarları */
 https://github.com/ferhadsultan98/caliber/blob/main/admin.html
  #login-body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-  flex-direction: column;
-            height: 90vh;
-            background-color: rgba(0, 0, 0, 0.5); /* Şeffaf arka plan */
+             display: flex;
+    justify-content: center; /* Yatayda ortalamayı sağlar */
+    align-items: center; /* Dikeyde ortalamayı sağlar */
+    flex-direction: column;
+    height: 100vh; /* Ekranın tamamını kullan */
+    background-color: rgba(0, 0, 0, 0.5); /* Şeffaf arka plan */
         }
 
          #login-body #login-section {
