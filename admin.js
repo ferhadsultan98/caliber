@@ -136,6 +136,7 @@ async function fetchOrdersFromFirebase() {
     const snapshot = await get(ordersRef); // Firebase'ten veriyi çekme
     if (snapshot.exists()) {
       const orders = snapshot.val(); // Sipariş verileri
+      console.log(orders); // Veriyi kontrol et
       displayOrders(orders); // Siparişleri görüntüleme
     } else {
       console.log("No orders found.");
@@ -155,24 +156,33 @@ function displayOrders(orders) {
     return;
   }
 
+  // Her siparişi döngüyle gez
   for (const orderId in orders) {
-    const order = orders[orderId];
-    const orderDiv = document.createElement("div");
-    orderDiv.classList.add("order-item");
+    const order = orders[orderId]; // Sipariş verisi
+    console.log(order); // Siparişi kontrol et
 
-    orderDiv.innerHTML = `
-      <img src="${order.image}" alt="${order.name}" class="order-image" />
-      <div class="order-details">
-        <h3>${order.name}</h3>
-        <p><strong>Qiymət:</strong> ${order.price}</p>
-        <p><strong>Endirim:</strong> ${order.discount}</p>
-        <p><strong>Cins:</strong> ${order.category}</p>
-        <p><strong>Say:</strong> ${order.quantity}</p>
-      </div>
-    `;
-    ordersList.appendChild(orderDiv);
+    // Siparişteki her item'ı (ürün) listele
+    if (order.items && order.items.length > 0) {
+      order.items.forEach((item) => {
+        const orderDiv = document.createElement("div");
+        orderDiv.classList.add("order-item");
+
+        orderDiv.innerHTML = `
+          <img src="${item.image}" alt="${item.name}" class="order-image" />
+          <div class="order-details">
+            <h3>${item.name}</h3>
+            <p><strong>Qiymət:</strong> ${item.price}</p>
+            <p><strong>Endirim:</strong> ${item.discount}</p>
+            <p><strong>Cins:</strong> ${item.category}</p>
+            <p><strong>Say:</strong> ${item.quantity}</p>
+          </div>
+        `;
+        ordersList.appendChild(orderDiv);
+      });
+    }
   }
 }
+
 
 // Ürün ekleme formunun submit event'i
 document
