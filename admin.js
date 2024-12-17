@@ -22,7 +22,6 @@ document.getElementById('logout-btn').addEventListener('click', function() {
 });
 
 function toggleLoginState(isLoggedIn) {
-  document.getElementById('login-body').style.display = isLoggedIn ? 'none' : 'block';
   document.getElementById('admin-panel').style.display = isLoggedIn ? 'block' : 'none';
   document.getElementById('login-section').style.display = isLoggedIn ? 'none' : 'block';
 }
