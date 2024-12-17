@@ -105,7 +105,7 @@ window.addEventListener('scroll', function () {
 // Function to fetch products and display them
   // Firebase SDK modülünü import etme
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
+import { getDatabase, ref, set, get, push } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
 
 // Firebase konfigürasyonu
 const firebaseConfig = {
@@ -227,18 +227,21 @@ function updateCart() {
 // Siparişi Firebase'e kaydetme fonksiyonu
 async function saveOrderToFirebase(cart) {
     try {
+        // Firebase Realtime Database'de 'orders' koleksiyonuna yeni sipariş ekle
         const ordersRef = ref(database, 'orders');
-        const newOrderRef = ordersRef.push(); // Yeni sipariş ID'si oluştur
+        const newOrderRef = push(ordersRef); // Yeni bir sipariş eklemek için push() fonksiyonunu çağırıyoruz
+
+        // Siparişi Firebase'e kaydet
         await set(newOrderRef, {
-            items: cart,
-            timestamp: Date.now(),
+            items: cart, // Sepetteki ürünler
+            timestamp: Date.now(), // Sipariş zamanı (timestamp)
         });
 
         alert("Sipariş başarıyla kaydedildi!");
-        cart = [];
-        updateCart();
+        cart = []; // Siparişi başarılı kaydettikten sonra sepeti sıfırla
+        updateCart(); // Sepeti güncelle
     } catch (error) {
-        console.error("Sipariş kaydedilirken hata:", error);
+        console.error("Firebase'e sipariş kaydedilirken hata:", error);
         alert("Sipariş kaydedilirken bir hata oluştu.");
     }
 }
