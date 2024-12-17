@@ -123,56 +123,61 @@ window.addEventListener('scroll', function () {
     const database = getDatabase(app);
 
     // Ürünleri Fetch Etme Fonksiyonu
-    async function fetchProducts() {
-        try {
-            const productRef = ref(database, 'products');
-            const snapshot = await get(productRef);
-            const products = snapshot.val() || [];
+  async function fetchProducts() {
+    try {
+        const productRef = ref(database, 'products');
+        const snapshot = await get(productRef);
+        const productsData = snapshot.val(); // Veriyi al
 
-            // Seçilen Kategori
-            const selectedCategory = document.getElementById('category-select').value;
+        // Eğer ürün verisi mevcut değilse boş diziye ayarla
+        const products = productsData ? Object.values(productsData) : [];
 
-            // Kategoriyi filtrele
-            const filteredProducts = selectedCategory === 'all'
-                ? products
-                : products.filter(product => product.category === selectedCategory);
+        // Seçilen Kategori
+        const selectedCategory = document.getElementById('category-select').value;
 
-            // Ürünleri Göster
-            displayProducts(filteredProducts);
-        } catch (error) {
-            console.error("Error fetching products:", error);
-        }
+        // Kategoriyi filtrele
+        const filteredProducts = selectedCategory === 'all'
+            ? products
+            : products.filter(product => product.category === selectedCategory);
+
+        // Ürünleri Göster
+        displayProducts(filteredProducts);
+    } catch (error) {
+        console.error("Error fetching products:", error);
     }
+}
 
-    // Ürünleri Gösterme Fonksiyonu
-    function displayProducts(products) {
-        const productContainer = document.getElementById("product-cards");
-        productContainer.innerHTML = ''; // Mevcut ürünleri temizle
+// Ürünleri Gösterme Fonksiyonu
+function displayProducts(products) {
+    const productContainer = document.getElementById("product-cards");
+    productContainer.innerHTML = ''; // Mevcut ürünleri temizle
 
-        products.forEach(product => {
-            const productCard = document.createElement("div");
-            productCard.classList.add("product-card");
+    // Her ürün için kart oluştur
+    products.forEach(product => {
+        const productCard = document.createElement("div");
+        productCard.classList.add("product-card");
 
-            // HTML içeriği oluşturuluyor
-            productCard.innerHTML = `
-                <img src="${product.image}" alt="${product.name}" />
-                <div class="card-info">
-                    <h3>${product.name}</h3>
-                    <p class="qiymet">${product.price}</p>
-                    <p>${product.discount || 'N/A'}</p>
-                    <button class="buy-now">Buy Now</button>
-                </div>
-            `;
+        // HTML içeriği oluşturuluyor
+        productCard.innerHTML = `
+            <img src="${product.image}" alt="${product.name}" />
+            <div class="card-info">
+                <h3>${product.name}</h3>
+                <p class="qiymet">${product.price}</p>
+                <p>${product.discount || 'N/A'}</p>
+                <button class="buy-now">Buy Now</button>
+            </div>
+        `;
 
-            // "Buy Now" butonuna tıklanması için event listener ekle
-            const buyNowButton = productCard.querySelector(".buy-now");
-            buyNowButton.addEventListener("click", function() {
-                addToCart(product); // Burada product doğru şekilde iletiliyor
-            });
-
-            productContainer.appendChild(productCard);
+        // "Buy Now" butonuna tıklanması için event listener ekle
+        const buyNowButton = productCard.querySelector(".buy-now");
+        buyNowButton.addEventListener("click", function() {
+            addToCart(product); // Burada product doğru şekilde iletiliyor
         });
-    }
+
+        productContainer.appendChild(productCard);
+    });
+}
+
 
     // Sepete Ürün Ekleme ve Sepeti Güncelleme
     let cart = [];  // Sepetteki ürünlerin listesini tutacak
