@@ -67,7 +67,27 @@
   width: 80%;
   margin: auto;
 }
-
+#logout-btn{
+   background-color: #f44336;  
+  color: white; 
+  border: none;  
+  padding: 12px 24px;  
+  text-align: center; 
+  text-decoration: none;  
+  display: inline-block;  
+  font-size: 16px; 
+  border-radius: 8px; 
+  cursor: pointer;  
+  transition: all 0.3s ease; 
+}
+#logout-btn:hover {
+  background-color: #d32f2f;  
+  transform: scale(1.05);  
+}
+#logout-btn:active {
+  background-color: #c62828; 
+  transform: scale(0.98);  
+}
 #admin-panel header {
   text-align: center;
   background-color: #333;
