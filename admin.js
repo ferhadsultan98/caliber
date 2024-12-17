@@ -37,7 +37,7 @@ document.getElementById('logout-btn').addEventListener('click', function() {
   localStorage.removeItem('loggedIn');
   
   // Login ekranını tekrar göster, admin panelini gizle
-  document.getElementById('login-section').style.display = 'block';
+  document.getElementById('login-body').style.display = 'block';
   document.getElementById('admin-panel').style.display = 'none';
 });
 
