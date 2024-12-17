@@ -23,16 +23,16 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
+.login-section h2 {
   text-align: center;
 }
 
-label {
+.login-section label {
   display: block;
   margin-bottom: 5px;
 }
 
-input {
+.login-section input {
   width: 100%;
   padding: 8px;
   margin-bottom: 15px;
@@ -40,7 +40,7 @@ input {
   border-radius: 4px;
 }
 
-button {
+.login-section button {
   width: 100%;
   padding: 10px;
   background-color: #4CAF50;
@@ -50,11 +50,11 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.login-section button:hover {
   background-color: #45a049;
 }
 
-.error-message {
+.login-section .error-message {
   color: red;
   text-align: center;
 }
@@ -65,7 +65,7 @@ button:hover {
   margin: auto;
 }
 
-header {
+#admin-panel header {
   text-align: center;
   background-color: #333;
   color: white;
@@ -73,44 +73,44 @@ header {
   border-radius: 8px;
 }
 
-nav {
+#admin-panel nav {
   display: flex;
   justify-content: center;
   margin-top: 20px;
 }
 
-nav a {
+#admin-panel nav a {
   margin: 0 20px;
   color: #333;
   text-decoration: none;
   font-weight: bold;
 }
 
-nav a:hover {
+#admin-panel nav a:hover {
   color: #4CAF50;
 }
 
-.admin-main {
+#admin-panel .admin-main {
   margin-top: 30px;
 }
 
 /* Formlar */
-form {
+#admin-panel form {
   display: flex;
   flex-direction: column;
 }
 
-form input, form select, form button {
+#admin-panel form input, #admin-panel form select, #admin-panel form button {
   margin-bottom: 10px;
 }
 
-form button {
+#admin-panel form button {
   background-color: #4CAF50;
   color: white;
   cursor: pointer;
 }
 
-form button:hover {
+#admin-panel form button:hover {
   background-color: #45a049;
 }
 
