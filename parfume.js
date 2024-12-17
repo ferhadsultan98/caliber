@@ -232,10 +232,14 @@ async function saveOrderToFirebase(cart) {
         const ordersRef = ref(database, 'orders');
         const newOrderRef = push(ordersRef); // Yeni bir sipariş eklemek için push() fonksiyonunu çağırıyoruz
 
+        // Güncel tarihi ve saati almak
+        const now = new Date();
+        const timestamp = now.toLocaleString(); // Tarihi ve saati yerel formatta al
+
         // Siparişi Firebase'e kaydet
         await set(newOrderRef, {
             items: cart, // Sepetteki ürünler
-            timestamp: Date.now(), // Sipariş zamanı (timestamp)
+            timestamp: timestamp, // Sipariş zamanı (tarih ve saat)
         });
 
         alert("Sipariş başarıyla kaydedildi!");
@@ -246,6 +250,7 @@ async function saveOrderToFirebase(cart) {
         alert("Sipariş kaydedilirken bir hata oluştu.");
     }
 }
+
 
 // Checkout butonuna tıklama işlemi
 document.getElementById("checkout-btn").addEventListener("click", function() {
