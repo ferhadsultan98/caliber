@@ -1,80 +1,54 @@
 @import url(https://db.onlinewebfonts.com/c/88ec722aea6da3c9f67189591d5f3a6e?family=Batangas);
 /* Genel container ayarları */
-https://github.com/ferhadsultan98/caliber/blob/main/admin.html
-        html{
-            display: flex;
-            flex-direction: column;
-            height: 90vh;
-            justify-content: center;
-            align-items: center;
-            background-color: rgba(0, 0, 0, 0.5); /* Şeffaf arka plan */
-        }
+         .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f9;
+    }
 
-         #login-body #login-section {
-            background-color: #ffffff;
-            border-radius: 10px;
-            padding: 40px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            max-width: 400px;
-            width: 100%;
-        }
+    /* Login Container (child of .container) */
+    .login-container {
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
 
-         #login-body h2 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 30px;
-            font-size: 24px;
-        }
+    .login-container h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #333;
+    }
 
-        /* Form elemanları */
-         #login-body label {
-            font-size: 14px;
-            color: #333;
-            display: block;
-            margin-bottom: 8px;
-        }
+    .login-container input {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
 
-         #login-body input[type="text"],
-         #login-body input[type="password"] {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            font-size: 14px;
-            box-sizing: border-box;
-            transition: border 0.3s ease;
-        }
+    .login-container button {
+      width: 100%;
+      padding: 12px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
 
-         #login-body input[type="text"]:focus,
-        #login-body input[type="password"]:focus {
-            border-color: #3498db;
-            outline: none;
-        }
-
-         #login-body button {
-            width: 100%;
-            padding: 12px;
-            background-color: #3498db;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-         #login-body button:hover {
-            background-color: #2980b9;
-        }
-
-        /* Hata mesajı */
-         #login-body .error-message {
-            color: #e74c3c;
-            text-align: center;
-            margin-top: 10px;
-            font-size: 14px;
-        }
+    .login-container button:hover {
+      background-color: #0056b3;
+    }
 
 
 
