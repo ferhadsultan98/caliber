@@ -8,8 +8,6 @@
     align-items: center;
     height: 100vh;
     background: linear-gradient(135deg, #7b3fef, #4e73df); /* Şık bir gradient arka plan */
-    margin: 0;
-padding: 0;
 }
 
 #login-body #login-section {
