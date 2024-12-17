@@ -4,72 +4,91 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Panel</title>
-  <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="admin.css" />
   </head>
   <body>
-    <header>
-      <h1>Admin Panel</h1>
-    </header>
+    <!-- Giriş Ekranı -->
+    <div id="login-section" class="login-section">
+      <h2>Giriş Yap</h2>
+      <form id="login-form">
+        <label for="username">Kullanıcı Adı:</label>
+        <input type="text" id="username" required />
+        
+        <label for="password">Parola:</label>
+        <input type="password" id="password" required />
+        
+        <button type="submit">Giriş Yap</button>
+      </form>
+      <p id="login-error" class="error-message" style="display: none;">Yanlış kullanıcı adı veya parola!</p>
+    </div>
 
-    <nav>
-      <a href="#" id="add-product-btn">Məhsul Əlavə Et</a>
-      <a href="#" id="orders-btn">Sifarişlər</a>
-    </nav>
+    <!-- Admin Paneli -->
+    <div id="admin-panel" style="display: none;">
+      <header>
+        <h1>Admin Panel</h1>
+      </header>
 
-    <main class="admin-main">
-      <!-- Add Product Section -->
-      <section class="section" id="add-product-section">
-        <h2>Məhsul Əlavə Et</h2>
-        <form id="add-product-form">
-          <label for="product-name">Məhsul Adı:</label>
-          <input type="text" id="product-name" required />
+      <nav>
+        <a href="#" id="add-product-btn">Məhsul Əlavə Et</a>
+        <a href="#" id="orders-btn">Sifarişlər</a>
+      </nav>
 
-          <label for="product-price">Qiymət:</label>
-          <input type="text" id="product-price" required />
+      <main class="admin-main">
+        <!-- Add Product Section -->
+        <section class="section" id="add-product-section">
+          <h2>Məhsul Əlavə Et</h2>
+          <form id="add-product-form">
+            <label for="product-name">Məhsul Adı:</label>
+            <input type="text" id="product-name" required />
 
-          <select id="currency" required>
-            <option value="AZN">₼ (AZN)</option>
-            <option value="EUR">€ (EUR)</option>
-            <option value="USD">$ (USD)</option>
-          </select>
+            <label for="product-price">Qiymət:</label>
+            <input type="text" id="product-price" required />
 
-          <label for="product-image">Şəkil:</label>
-          <input type="file" id="product-image" required />
+            <select id="currency" required>
+              <option value="AZN">₼ (AZN)</option>
+              <option value="EUR">€ (EUR)</option>
+              <option value="USD">$ (USD)</option>
+            </select>
 
-          <label for="product-discount">Endirimli qiymət:</label>
-          <input type="text" id="product-discount" />
-          <select id="currency" required>
-            <option value="AZN">₼ (AZN)</option>
-            <option value="EUR">€ (EUR)</option>
-            <option value="USD">$ (USD)</option>
-          </select>
+            <label for="product-image">Şəkil:</label>
+            <input type="file" id="product-image" required />
 
-          <label for="product-category">Kateqoriya:</label>
-          <select id="product-category" required>
-            <option value="women">Qadın</option>
-            <option value="men">Kişi</option>
-          </select>
+            <label for="product-discount">Endirimli qiymət:</label>
+            <input type="text" id="product-discount" />
+            <select id="currency" required>
+              <option value="AZN">₼ (AZN)</option>
+              <option value="EUR">€ (EUR)</option>
+              <option value="USD">$ (USD)</option>
+            </select>
 
-          <button type="submit">Məhsul əlavə edin</button>
-        </form>
-      </section>
+            <label for="product-category">Kateqoriya:</label>
+            <select id="product-category" required>
+              <option value="women">Qadın</option>
+              <option value="men">Kişi</option>
+            </select>
 
-      <!-- Orders Section -->
-      <section class="section" id="orders-section" style="display: none">
-        <h2>Sifarişlər</h2>
-        <div id="orders-list">
-          <!-- Orders will be displayed here -->
+            <button type="submit">Məhsul əlavə edin</button>
+          </form>
+        </section>
+
+        <!-- Orders Section -->
+        <section class="section" id="orders-section" style="display: none">
+          <h2>Sifarişlər</h2>
+          <div id="orders-list">
+            <!-- Orders will be displayed here -->
+          </div>
+        </section>
+
+        <!-- Modal Pencere -->
+        <div id="modal" class="modalWindow">
+          <div class="modal-content">
+            <span id="modal-close" class="close">&times;</span>
+            <p id="modal-message"></p>
+          </div>
         </div>
-      </section>
+      </main>
+    </div>
 
-      <!-- Modal Pencere -->
-      <div id="modal" class="modalWindow">
-        <div class="modal-content">
-          <span id="modal-close" class="close">&times;</span>
-          <p id="modal-message"></p>
-        </div>
-      </div>
-    </main>
     <script src="admin.js" type="module"></script>
   </body>
 </html>
