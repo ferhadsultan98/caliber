@@ -5,9 +5,9 @@
 
       if (username === 'admin' && password === '2024205') {
         document.querySelector('.container').style.display = 'none'; // Hide login container
+          document.getElementById('admin-panel').style.display = 'block'; // Show admin panel
         setTimeout(function() {
           showModalWindow('Daxil olunur!..');
-            document.getElementById('admin-panel').style.display = 'block'; // Show admin panel
         }, 3000); // Simulate loading time
       } else {
         showModalWindow('İstifadəçi adı və ya parol səhvdir!');
