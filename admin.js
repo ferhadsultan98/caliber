@@ -1,30 +1,4 @@
-document.getElementById('login-form').addEventListener('submit', function(event) {
-  event.preventDefault(); 
-  const username = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
 
-  if (username === 'admin' && password === '20242025') {
-    localStorage.setItem('loggedIn', 'true');
-    toggleLoginState(true);
-  } else {
-    document.getElementById('login-error').style.display = 'block';
-  }
-});
-
-window.addEventListener('load', function() {
-  const loggedIn = localStorage.getItem('loggedIn') === 'true';
-  toggleLoginState(loggedIn);
-});
-
-document.getElementById('logout-btn').addEventListener('click', function() {
-  localStorage.removeItem('loggedIn');
-  toggleLoginState(false);
-});
-
-function toggleLoginState(isLoggedIn) {
-  document.getElementById('admin-panel').style.display = isLoggedIn ? 'block' : 'none';
-  document.getElementById('login-section').style.display = isLoggedIn ? 'none' : 'block';
-}
 
 
 
