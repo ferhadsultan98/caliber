@@ -1,30 +1,23 @@
-// Giriş yapma formunun submit olayını dinle
-document.getElementById('login-form').addEventListener('submit', function(event) {
-  event.preventDefault(); // Formun sayfayı yenilemesini engelle
 
+document.getElementById('login-form').addEventListener('submit', function(event) {
+  event.preventDefault(); 
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
-
-  // Kullanıcı adı ve şifre doğruysa giriş yap
   if (username === 'admin' && password === '20242025') {
-    // Başarılı giriş, localStorage'da oturum bilgisi sakla
     localStorage.setItem('loggedIn', 'true');
-    
-    // Giriş ekranını gizle, admin panelini göster
+    document.getElementById('login-section').style.display = 'none';
     document.getElementById('login-body').style.display = 'none';
     document.getElementById('admin-panel').style.display = 'block';
   } else {
-    // Hatalı giriş, hata mesajını göster
     document.getElementById('login-error').style.display = 'block';
   }
 });
 
-// Sayfa yüklendiğinde oturum kontrolü yap
+
 window.addEventListener('load', function() {
   const loggedIn = localStorage.getItem('loggedIn');
   
   if (loggedIn === 'true') {
-    // Kullanıcı zaten giriş yapmış, login bölümünü gizle ve admin panelini göster
     document.getElementById('login-section').style.display = 'none';
     document.getElementById('admin-panel').style.display = 'block';
   } else {
@@ -34,12 +27,9 @@ window.addEventListener('load', function() {
   }
 });
 
-// Çıkış yapma işlemi
+
 document.getElementById('logout-btn').addEventListener('click', function() {
-  // localStorage'daki oturum bilgisini sil
   localStorage.removeItem('loggedIn');
-  
-  // Login ekranını göster, admin panelini gizle
   document.getElementById('login-section').style.display = 'block';
   document.getElementById('admin-panel').style.display = 'none';
 });
