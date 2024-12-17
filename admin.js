@@ -59,28 +59,27 @@ function toggleLoginState(isLoggedIn) {
 function hideAllSections() {
     const sections = document.querySelectorAll(".section");
     sections.forEach((section) => {
-        section.style.display = "none";
+        section.style.display = "none";  // Hide all sections
     });
 }
 
 // Function to show a specific section
 function showSection(sectionId) {
-    hideAllSections(); // First, hide all sections
-    document.getElementById(sectionId).style.display = "block"; // Then, show the specific section
+    hideAllSections();  // Hide all sections first
+    document.getElementById(sectionId).style.display = "block";  // Show the selected section
 }
 
 // Event listeners for navbar
 document.getElementById("add-product-btn").addEventListener("click", function () {
-    showSection("add-product-section");
+    showSection("add-product-section");  // Show "Add Product" section when clicked
 });
 
 document.getElementById("orders-btn").addEventListener("click", function () {
-    showSection("orders-section");
+    showSection("orders-section");  // Show "Orders" section when clicked
 });
 
 // Show "Add Product" section by default when the page loads
-showSection("add-product-section");
-
+showSection("add-product-section");  // By default show "Add Product" section
 
    
     // Firebase SDK'yı import etme
