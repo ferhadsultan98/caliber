@@ -104,26 +104,26 @@ window.addEventListener('scroll', function () {
 
 // Function to fetch products and display them
   // Firebase SDK modülünü import etme
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-    import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
-    
-    // Firebase konfigürasyonu
-    const firebaseConfig = {
-        apiKey: "AIzaSyCps_Vgv9la3masD0VTiE8G9EFikq2o49g",
-        authDomain: "parfume-51146.firebaseapp.com",
-        databaseURL: "https://parfume-51146-default-rtdb.asia-southeast1.firebasedatabase.app",
-        projectId: "parfume-51146",
-        storageBucket: "parfume-51146.firebasestorage.app",
-        messagingSenderId: "296367412154",
-        appId: "1:296367412154:web:d1e2bfb275e6dfaeb50383"
-    };
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
 
-    // Firebase'i başlat
-    const app = initializeApp(firebaseConfig);
-    const database = getDatabase(app);
+// Firebase konfigürasyonu
+const firebaseConfig = {
+    apiKey: "AIzaSyCps_Vgv9la3masD0VTiE8G9EFikq2o49g",
+    authDomain: "parfume-51146.firebaseapp.com",
+    databaseURL: "https://parfume-51146-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "parfume-51146",
+    storageBucket: "parfume-51146.firebasestorage.app",
+    messagingSenderId: "296367412154",
+    appId: "1:296367412154:web:d1e2bfb275e6dfaeb50383"
+};
 
-    // Ürünleri Fetch Etme Fonksiyonu
-  async function fetchProducts() {
+// Firebase'i başlat
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+
+// Ürünleri Fetch Etme Fonksiyonu
+async function fetchProducts() {
     try {
         const productRef = ref(database, 'products');
         const snapshot = await get(productRef);
@@ -178,58 +178,85 @@ function displayProducts(products) {
     });
 }
 
-
-    // Sepete Ürün Ekleme ve Sepeti Güncelleme
-    let cart = [];  // Sepetteki ürünlerin listesini tutacak
-    function addToCart(product) {
-        const existingProduct = cart.find(item => item.id === product.id);
-        if (existingProduct) {
-            existingProduct.quantity += 1; // Miktarı bir arttır
-        } else {
-            cart.push({...product, quantity: 1}); // Yeni ürün ekle, miktar 1
-        }
-        updateCart(); // Sepeti güncelle
+// Sepete Ürün Ekleme ve Sepeti Güncelleme
+let cart = [];  // Sepetteki ürünlerin listesini tutacak
+function addToCart(product) {
+    const existingProduct = cart.find(item => item.id === product.id);
+    if (existingProduct) {
+        existingProduct.quantity += 1; // Miktarı bir arttır
+    } else {
+        cart.push({...product, quantity: 1}); // Yeni ürün ekle, miktar 1
     }
+    updateCart(); // Sepeti güncelle
+}
 
-    function updateCart() {
-        const cartItemsContainer = document.getElementById("cart-items");
-        cartItemsContainer.innerHTML = ''; // Sepeti temizle
+// Sepeti Güncelleme Fonksiyonu
+function updateCart() {
+    const cartItemsContainer = document.getElementById("cart-items");
+    cartItemsContainer.innerHTML = ''; // Sepeti temizle
 
-        cart.forEach(product => {
-            const cartItem = document.createElement("div");
-            cartItem.classList.add("cart-item");
+    cart.forEach(product => {
+        const cartItem = document.createElement("div");
+        cartItem.classList.add("cart-item");
 
-            const price = parseFloat(product.price);
-            const quantity = product.quantity;
-            const totalPrice = isNaN(price) || isNaN(quantity) ? 0 : price * quantity;
+        const price = parseFloat(product.price);
+        const quantity = product.quantity;
+        const totalPrice = isNaN(price) || isNaN(quantity) ? 0 : price * quantity;
 
-            cartItem.innerHTML = `
-                <img src="${product.image}" alt="${product.name}" class="cart-item-image" />
-                <div class="cart-item-info">
-                    <h4>${product.name}</h4>
-                    <p>Quantity: ${quantity}</p>
-                    <p>Price: ${totalPrice.toFixed(2)}</p>
-                </div>
-            `;
+        cartItem.innerHTML = `
+            <img src="${product.image}" alt="${product.name}" class="cart-item-image" />
+            <div class="cart-item-info">
+                <h4>${product.name}</h4>
+                <p>Quantity: ${quantity}</p>
+                <p>Price: ${totalPrice.toFixed(2)}</p>
+            </div>
+        `;
 
-            cartItemsContainer.appendChild(cartItem);
+        cartItemsContainer.appendChild(cartItem);
+    });
+
+    const cartSection = document.getElementById("cart");
+    cartSection.style.display = cart.length > 0 ? "block" : "none"; 
+
+    const emptyMessage = document.getElementById("cart-empty-message");
+    if (emptyMessage) {
+        emptyMessage.classList.toggle("show", cart.length === 0); 
+    }
+}
+
+// Siparişi Firebase'e kaydetme fonksiyonu
+async function saveOrderToFirebase(cart) {
+    try {
+        const ordersRef = ref(database, 'orders');
+        const newOrderRef = ordersRef.push(); // Yeni sipariş ID'si oluştur
+        await set(newOrderRef, {
+            items: cart,
+            timestamp: Date.now(),
         });
 
-        const cartSection = document.getElementById("cart");
-        cartSection.style.display = cart.length > 0 ? "block" : "none"; 
-
-        const emptyMessage = document.getElementById("cart-empty-message");
-        if (emptyMessage) {
-            emptyMessage.classList.toggle("show", cart.length === 0); 
-        }
+        alert("Sipariş başarıyla kaydedildi!");
+        cart = [];
+        updateCart();
+    } catch (error) {
+        console.error("Sipariş kaydedilirken hata:", error);
+        alert("Sipariş kaydedilirken bir hata oluştu.");
     }
+}
 
-    // Sayfa yüklendiğinde ürünleri getirme
-    window.onload = fetchProducts;
+// Checkout butonuna tıklama işlemi
+document.getElementById("checkout-btn").addEventListener("click", function() {
+    if (cart.length > 0) {
+        saveOrderToFirebase(cart);
+    } else {
+        alert("Sepetinizde ürün yok!");
+    }
+});
 
-    // Kategori seçildiğinde ürünleri filtreleme
-    document.getElementById("category-select").addEventListener("change", fetchProducts);
+// Sayfa yüklendiğinde ürünleri getirme
+window.onload = fetchProducts;
 
+// Kategori seçildiğinde ürünleri filtreleme
+document.getElementById("category-select").addEventListener("change", fetchProducts);
 
 
 
