@@ -1,4 +1,26 @@
+// Login function
+    function login() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
 
+      if (username === 'admin' && password === '2024205') {
+        document.querySelector('.container').style.display = 'none'; // Hide login container
+        document.getElementById('admin-panel').style.display = 'block'; // Show admin panel
+        setTimeout(function() {
+          showModalWindow('Daxil olunur!..');
+        }, 3000); // Simulate loading time
+      } else {
+        showModalWindow('İstifadəçi adı və ya parol səhvdir!');
+      }
+    }
+    // Logout function
+    function logout() {
+      document.getElementById('admin-panel').style.display = 'none';
+      document.querySelector('.container').style.display = 'block'; // Show login container again
+    }
+
+    // Add event listener for login button
+    document.getElementById('login-btn').addEventListener('click', login);
 
 
 
