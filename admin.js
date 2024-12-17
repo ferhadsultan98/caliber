@@ -4,7 +4,7 @@ document.getElementById('login-form').addEventListener('submit', function(event)
   const password = document.getElementById('password').value;
   
   // Kullanıcı adı ve parolayı kontrol edin (örneğin sabit bir değerle)
-  if (username === 'admin' && password === 'admin123') {
+  if (username === 'admin' && password === '20242025') {
     // Giriş başarılı, localStorage'da loggedIn değeri true olarak ayarlandı
     localStorage.setItem('loggedIn', 'true');
     
