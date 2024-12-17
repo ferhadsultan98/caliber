@@ -18,6 +18,7 @@
       document.getElementById('admin-panel').style.display = 'none';
       document.querySelector('.container').style.display = 'block'; // Show login container again
     }
+document.getElementById('logout-btn').addEventListener('click', logout);
 
     // Add event listener for login button
     document.getElementById('login-btn').addEventListener('click', login);
