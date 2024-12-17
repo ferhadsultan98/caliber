@@ -2,45 +2,30 @@ document.getElementById('login-form').addEventListener('submit', function(event)
   event.preventDefault(); 
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
-  
-  // Kullanıcı adı ve parolayı kontrol edin (örneğin sabit bir değerle)
+
   if (username === 'admin' && password === '20242025') {
-    // Giriş başarılı, localStorage'da loggedIn değeri true olarak ayarlandı
     localStorage.setItem('loggedIn', 'true');
-    
-    // Login ekranını gizle, admin panelini göster
-    document.getElementById('login-body').style.display = 'none';
-    document.getElementById('login-section').style.display = 'none';
-    document.getElementById('admin-panel').style.display = 'block';
+    toggleLoginState(true);
   } else {
-    // Giriş başarısız, hata mesajını göster
     document.getElementById('login-error').style.display = 'block';
   }
 });
 
 window.addEventListener('load', function() {
-  const loggedIn = localStorage.getItem('loggedIn');
-  
-  if (loggedIn === 'true') {
-    // Kullanıcı giriş yapmışsa, login ekranını gizle ve admin panelini göster
-    document.getElementById('login-body').style.display = 'none';
-    document.getElementById('admin-panel').style.display = 'block';
-  } else {
-    // Kullanıcı giriş yapmamışsa, login bölümünü göster
-    document.getElementById('login-body').style.display = 'block';
-    document.getElementById('admin-panel').style.display = 'none';
-  }
+  const loggedIn = localStorage.getItem('loggedIn') === 'true';
+  toggleLoginState(loggedIn);
 });
 
 document.getElementById('logout-btn').addEventListener('click', function() {
-  // Çıkış yapıldığında loggedIn bilgisini localStorage'dan sil
   localStorage.removeItem('loggedIn');
-  
-  // Login ekranını tekrar göster, admin panelini gizle
-  document.getElementById('login-body').style.display = 'block';
-  document.getElementById('login-section').style.display = 'block';
-  document.getElementById('admin-panel').style.display = 'none';
+  toggleLoginState(false);
 });
+
+function toggleLoginState(isLoggedIn) {
+  document.getElementById('login-body').style.display = isLoggedIn ? 'none' : 'block';
+  document.getElementById('admin-panel').style.display = isLoggedIn ? 'block' : 'none';
+  document.getElementById('login-section').style.display = isLoggedIn ? 'none' : 'block';
+}
 
 
 
