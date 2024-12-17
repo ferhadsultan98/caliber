@@ -179,6 +179,7 @@ function displayProducts(products) {
 }
 
 // Sepete Ürün Ekleme ve Sepeti Güncelleme
+// Sepete Ürün Ekleme ve Sepeti Güncelleme
 let cart = [];  // Sepetteki ürünlerin listesini tutacak
 function addToCart(product) {
     const existingProduct = cart.find(item => item.id === product.id);
@@ -254,7 +255,8 @@ document.getElementById("checkout-btn").addEventListener("click", function() {
         alert("Sepetinizde ürün yok!");
     }
 });
-/ Sepeti Kapatma butonu işlevi
+
+// Sepeti Kapatma butonu işlevi
 document.addEventListener("DOMContentLoaded", function() {
     // "close-cart-btn" butonunun click olayı
     document.getElementById("close-cart-btn").addEventListener("click", function() {
@@ -262,11 +264,13 @@ document.addEventListener("DOMContentLoaded", function() {
         cartSection.style.display = "none"; // Sepeti gizle
     });
 });
+
 // Sayfa yüklendiğinde ürünleri getirme
 window.onload = fetchProducts;
 
 // Kategori seçildiğinde ürünleri filtreleme
 document.getElementById("category-select").addEventListener("change", fetchProducts);
+
 
 
 
