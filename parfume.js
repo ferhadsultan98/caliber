@@ -254,7 +254,14 @@ document.getElementById("checkout-btn").addEventListener("click", function() {
         alert("Sepetinizde ürün yok!");
     }
 });
-
+/ Sepeti Kapatma butonu işlevi
+document.addEventListener("DOMContentLoaded", function() {
+    // "close-cart-btn" butonunun click olayı
+    document.getElementById("close-cart-btn").addEventListener("click", function() {
+        const cartSection = document.getElementById("cart");
+        cartSection.style.display = "none"; // Sepeti gizle
+    });
+});
 // Sayfa yüklendiğinde ürünleri getirme
 window.onload = fetchProducts;
 
