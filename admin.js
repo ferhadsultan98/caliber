@@ -31,6 +31,16 @@ window.addEventListener('load', function() {
   }
 });
 
+// Çıkış Yapma Fonksiyonu
+document.getElementById('logout-btn').addEventListener('click', function() {
+  // localStorage'daki oturum bilgisini sil
+  localStorage.removeItem('loggedIn');
+  
+  // Login ekranını göster, admin panelini gizle
+  document.getElementById('login-section').style.display = 'block';
+  document.getElementById('admin-panel').style.display = 'none';
+});
+
 
 
 
