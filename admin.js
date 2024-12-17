@@ -19,7 +19,20 @@ document.getElementById('login-form').addEventListener('submit', function(event)
   }
 });
 
-
+// Sayfa yüklendiğinde oturum kontrolü yap
+window.addEventListener('load', function() {
+  const loggedIn = localStorage.getItem('loggedIn');
+  
+  if (loggedIn === 'true') {
+    // Kullanıcı zaten giriş yapmış, login bölümünü gizle ve admin panelini göster
+    document.getElementById('login-section').style.display = 'none';
+    document.getElementById('admin-panel').style.display = 'block';
+  } else {
+    // Kullanıcı giriş yapmamış, login bölümünü göster
+    document.getElementById('login-section').style.display = 'block';
+    document.getElementById('admin-panel').style.display = 'none';
+  }
+});
 
 // Çıkış yapma işlemi
 document.getElementById('logout-btn').addEventListener('click', function() {
