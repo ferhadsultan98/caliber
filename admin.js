@@ -1,35 +1,41 @@
-
 document.getElementById('login-form').addEventListener('submit', function(event) {
   event.preventDefault(); 
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
-  if (username === 'admin' && password === '20242025') {
+  
+  // Kullanıcı adı ve parolayı kontrol edin (örneğin sabit bir değerle)
+  if (username === 'admin' && password === 'admin123') {
+    // Giriş başarılı, localStorage'da loggedIn değeri true olarak ayarlandı
     localStorage.setItem('loggedIn', 'true');
+    
+    // Login ekranını gizle, admin panelini göster
     document.getElementById('login-section').style.display = 'none';
-    document.getElementById('login-body').style.display = 'none';
     document.getElementById('admin-panel').style.display = 'block';
   } else {
+    // Giriş başarısız, hata mesajını göster
     document.getElementById('login-error').style.display = 'block';
   }
 });
-
 
 window.addEventListener('load', function() {
   const loggedIn = localStorage.getItem('loggedIn');
   
   if (loggedIn === 'true') {
+    // Kullanıcı giriş yapmışsa, login ekranını gizle ve admin panelini göster
     document.getElementById('login-section').style.display = 'none';
     document.getElementById('admin-panel').style.display = 'block';
   } else {
-    // Kullanıcı giriş yapmamış, login bölümünü göster
+    // Kullanıcı giriş yapmamışsa, login bölümünü göster
     document.getElementById('login-section').style.display = 'block';
     document.getElementById('admin-panel').style.display = 'none';
   }
 });
 
-
 document.getElementById('logout-btn').addEventListener('click', function() {
+  // Çıkış yapıldığında loggedIn bilgisini localStorage'dan sil
   localStorage.removeItem('loggedIn');
+  
+  // Login ekranını tekrar göster, admin panelini gizle
   document.getElementById('login-section').style.display = 'block';
   document.getElementById('admin-panel').style.display = 'none';
 });
