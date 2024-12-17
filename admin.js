@@ -1,3 +1,7 @@
+
+    // Firebase SDK'yı import etme
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js';
+    import { getDatabase, ref, set, push } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js';
 // Firebase yapılandırması
 const firebaseConfig = {
   apiKey: "AIzaSyCps_Vgv9la3masD0VTiE8G9EFikq2o49g",
