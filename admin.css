@@ -116,17 +116,17 @@
 
 
 /* Navbar styles */
-#admin-panel nav {
+nav {
   background-color: #333; /* Dark background */
   padding: 15px 30px;
   text-align: center;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
 }
-#admin-panel #add-product-section, #orders-section{
+#add-product-section, #orders-section{
   padding: 15px;
 }
-#admin-panel nav a {
+nav a {
   color: #fff; /* White text */
   font-size: 18px;
   text-decoration: none; /* Remove underline */
@@ -136,22 +136,27 @@
   transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
 }
 
-#admin-panel nav a:hover {
+nav a:hover {
   background-color: #007bff; /* Blue background on hover */
   color: #fff; /* White text on hover */
 }
 
-#admin-panel nav a:active {
+nav a:active {
   background-color: #0056b3; /* Darker blue when active */
 }
+body {
+  font-family: "Batangas";
+  background: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
 
-
-#admin-panel h1,
-#admin-panel h2 {
+h1,
+h2 {
   color: #333;
 }
 
-#admin-panel header {
+header {
   background: #2c3e50;
   color: #fff;
   padding: 20px 0;
@@ -231,20 +236,19 @@ form input[type="text"]:focus {
 button {
   font-weight: bold;
 }
-
 /* Order Section */
-#orders-section #orders-list{
+#orders-list{
   height: 58vh;
   overflow-y: scroll;
   border: 2px solid green;
   border-radius: 5px;
   padding: 15px;
 }
-#orders-section {
+.orders-section {
   margin-top: 20px;
 }
 
-#orders-section .order-item {
+.order-item {
   display: flex;
   align-items: center;
   margin-bottom: 5px;
@@ -253,26 +257,26 @@ button {
   border-radius: 5px;
 }
 
-#orders-section .order-image {
+.order-image {
   width: 100px;
   height: 100px;
   object-fit: cover;
   margin-right: 20px;
 }
 
-#orders-section .order-details {
+.order-details {
   display: flex;
   justify-content: space-between;
   gap: 30px;
   align-items: center;
 }
 
-#orders-section .order-details h3 {
+.order-details h3 {
   margin: 0;
   font-size: 1.6em;
 }
 
-#orders-section .order-details p {
+.order-details p {
   margin: 5px 0;
 }
 /* Modal Pencere */
