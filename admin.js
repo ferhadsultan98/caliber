@@ -71,20 +71,15 @@ function toggleLoginState(isLoggedIn) {
       }
 
       // Event listeners for navbar
-      document
-        .getElementById("add-product-btn")
-        .addEventListener("click", function () {
+      document.getElementById("add-product-btn").addEventListener("click", function () {
           showSection("add-product-section");
         });
 
-      document
-        .getElementById("orders-btn")
-        .addEventListener("click", function () {
+      document.getElementById("orders-btn").addEventListener("click", function () {
           showSection("orders-section");
         });
 
-      // Show "Add Product" section by default when the page loads
-      showSection("add-product-section");
+   
     // Firebase SDK'yı import etme
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js';
     import { getDatabase, ref, set, push, get } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js';
