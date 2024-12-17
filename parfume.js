@@ -103,221 +103,127 @@ window.addEventListener('scroll', function () {
 
 
 // Function to fetch products and display them
-async function fetchProducts() {
-    const token = "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"; 
-    const repoOwner = "ferhadsultan98";
-    const repoName = "infos";
-    const filePath = "projects.json"; 
-    const url = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`;
+  // Firebase SDK modülünü import etme
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+    import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
+    
+    // Firebase konfigürasyonu
+    const firebaseConfig = {
+        apiKey: "AIzaSyCps_Vgv9la3masD0VTiE8G9EFikq2o49g",
+        authDomain: "parfume-51146.firebaseapp.com",
+        databaseURL: "https://parfume-51146-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "parfume-51146",
+        storageBucket: "parfume-51146.firebasestorage.app",
+        messagingSenderId: "296367412154",
+        appId: "1:296367412154:web:d1e2bfb275e6dfaeb50383"
+    };
 
-    try {
-        const response = await fetch(url, {
-            headers: {
-                'Authorization': `token ${token}`,
-            },
-        });
+    // Firebase'i başlat
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
 
-        const data = await response.json();
-        if (data.content) {
-            const decodedContent = atob(data.content);
-            const products = JSON.parse(decodedContent) || [];
+    // Ürünleri Fetch Etme Fonksiyonu
+    async function fetchProducts() {
+        try {
+            const productRef = ref(database, 'products');
+            const snapshot = await get(productRef);
+            const products = snapshot.val() || [];
 
-            // Get selected category
+            // Seçilen Kategori
             const selectedCategory = document.getElementById('category-select').value;
 
-            // Filter products by selected category
+            // Kategoriyi filtrele
             const filteredProducts = selectedCategory === 'all'
                 ? products
                 : products.filter(product => product.category === selectedCategory);
 
-            // Display the products in the product-cards container
+            // Ürünleri Göster
             displayProducts(filteredProducts);
+        } catch (error) {
+            console.error("Error fetching products:", error);
         }
-    } catch (error) {
-        console.error("Error fetching products:", error);
-    }
-}
-
-// Function to display products
-let cart = [];  // Sepetteki ürünlerin listesini tutacak
-
-// Sepeti kapatma fonksiyonu
-document.getElementById("close-cart-btn").addEventListener("click", function() {
-    const cartSection = document.getElementById("cart");
-    cartSection.style.display = "none"; // Sepeti gizle
-});
-
-// Sepeti açma fonksiyonu
-function openCart() {
-    const cartSection = document.getElementById("cart");
-    cartSection.style.display = "block"; // Sepeti göster
-}
-
-function updateCart() {
-    const cartItemsContainer = document.getElementById("cart-items");
-    cartItemsContainer.innerHTML = ''; // Sepeti temizle
-
-    cart.forEach(product => {
-        const cartItem = document.createElement("div");
-        cartItem.classList.add("cart-item");
-
-        // Fiyat ve miktar kontrolü
-        const price = parseFloat(product.price);
-        const quantity = product.quantity;
-        
-        if (isNaN(price) || isNaN(quantity)) {
-            console.error("Invalid price or quantity", product);
-        }
-
-        // Toplam fiyatı hesapla (fiyat ve miktar geçerliyse)
-        const totalPrice = (isNaN(price) || isNaN(quantity)) ? 0 : price * quantity;
-
-        cartItem.innerHTML = `
-            <img src="${product.image}" alt="${product.name}" class="cart-item-image" />
-            <div class="cart-item-info">
-                <h4>${product.name}</h4>
-                <p>Quantity: ${quantity}</p>
-                <p>Price: ${totalPrice.toFixed(2)}</p>
-            </div>
-        `;
-
-        cartItemsContainer.appendChild(cartItem);
-    });
-
-    // Sepet görünürlüğünü kontrol et
-    const cartSection = document.getElementById("cart");
-    cartSection.style.display = cart.length > 0 ? "block" : "none"; 
-
-    // Sepet boşsa mesajı göster
-    const emptyMessage = document.getElementById("cart-empty-message");
-    if (emptyMessage) {
-        emptyMessage.classList.toggle("show", cart.length === 0); 
-    }
-}
-
-// Ürünleri sepete ekleme ve sepeti açma
-function addToCart(product) {
-    // Sepette bu ürün zaten varsa, miktarını arttır
-    const existingProduct = cart.find(item => item.id === product.id);
-    if (existingProduct) {
-        existingProduct.quantity += 1; // Miktarı bir arttır
-    } else {
-        cart.push({...product, quantity: 1}); // Yeni ürün ekle, miktar 1
     }
 
-    updateCart(); // Sepeti güncelle
-}
+    // Ürünleri Gösterme Fonksiyonu
+    function displayProducts(products) {
+        const productContainer = document.getElementById("product-cards");
+        productContainer.innerHTML = ''; // Mevcut ürünleri temizle
 
-// "Buy Now" butonuna tıklama işlemi
-function handleBuyNow(product) {
-    // "Buy Now" butonunda ürün miktarını 1 arttır
-    addToCart(product);
-}
+        products.forEach(product => {
+            const productCard = document.createElement("div");
+            productCard.classList.add("product-card");
 
-// "Checkout" butonuna tıklama işlemi
-document.getElementById("checkout-btn").addEventListener("click", function() {
-   showModalWindow("Proceeding to checkout...");
-});
+            // HTML içeriği oluşturuluyor
+            productCard.innerHTML = `
+                <img src="${product.image}" alt="${product.name}" />
+                <div class="card-info">
+                    <h3>${product.name}</h3>
+                    <p class="qiymet">${product.price}</p>
+                    <p>${product.discount || 'N/A'}</p>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            `;
 
-// Ürünleri görüntüleme
-function displayProducts(products) {
-    const productContainer = document.getElementById("product-cards");
-    productContainer.innerHTML = ''; // Mevcut ürünleri temizle
+            // "Buy Now" butonuna tıklanması için event listener ekle
+            const buyNowButton = productCard.querySelector(".buy-now");
+            buyNowButton.addEventListener("click", function() {
+                addToCart(product); // Burada product doğru şekilde iletiliyor
+            });
 
-    products.forEach(product => {
-        const productCard = document.createElement("div");
-        productCard.classList.add("product-card");
-
-        // HTML içeriği oluşturuluyor
-        productCard.innerHTML = `
-            <img src="${product.image}" alt="${product.name}" />
-            <div class="card-info">
-                <h3>${product.name}</h3>
-                <p class="qiymet">${product.price}</p>
-                <p>${product.discount || 'N/A'}</p>
-                <button class="buy-now">Buy Now</button>
-            </div>
-        `;
-
-        // "Buy Now" butonuna tıklanması için event listener ekle
-        const buyNowButton = productCard.querySelector(".buy-now");
-        buyNowButton.addEventListener("click", function() {
-            handleBuyNow(product); // Burada product doğru şekilde iletiliyor
+            productContainer.appendChild(productCard);
         });
+    }
 
-        productContainer.appendChild(productCard);
-    });
-}
-
-// Order Please
-document.getElementById("checkout-btn").addEventListener("click", async function() {
-    const orderData = JSON.stringify(cart, null, 2); // Sepetteki veriyi JSON formatında al
-    const token = "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"; // GitHub token
-    const repoOwner = "ferhadsultan98";  // GitHub repository sahibi
-    const repoName = "infos";  // Repository adı
-    const filePath = "order.json";  // Güncellenecek dosya yolu
-    const branch = "main";  // Hedef şube
-
-    try {
-        // 1. GitHub API'sinden mevcut dosyanın SHA bilgisini al
-        const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
-            method: "GET",
-            headers: {
-                "Authorization": `token ${token}`,
-                "Content-Type": "application/json"
-            }
-        });
-
-        if (!response.ok) {
-            throw new Error("Error fetching file data");
-        }
-
-        const data = await response.json();
-
-        // Eğer dosya boşsa (content olmayabilir), o zaman empty array kullan
-        let currentData = data.content ? JSON.parse(atob(data.content)) : [];
-        
-
-        // 2. Sipariş verisini mevcut verilere ekle
-        const updatedData = [...currentData, ...JSON.parse(orderData)];
-
-        // 3. Dosyayı güncellemek için PUT isteği gönder
-        const updateResponse = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
-            method: "PUT",
-            headers: {
-                "Authorization": `token ${token}`,
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                message: "Add new order data to order.json",  // Commit mesajı
-                content: btoa(JSON.stringify(updatedData, null, 2)),  // Yeni veri base64 ile şifrele
-                sha: data.sha,  // Eski dosyanın sha değeri
-                branch: branch  // Hedef şube
-            })
-        });
-
-        if (!updateResponse.ok) {
-            throw new Error("Error updating file data");
-        }
-
-        const updateData = await updateResponse.json();
-        if (updateData.commit) {
-            console.log("Sipariş GitHub'a başarıyla gönderildi!");
+    // Sepete Ürün Ekleme ve Sepeti Güncelleme
+    let cart = [];  // Sepetteki ürünlerin listesini tutacak
+    function addToCart(product) {
+        const existingProduct = cart.find(item => item.id === product.id);
+        if (existingProduct) {
+            existingProduct.quantity += 1; // Miktarı bir arttır
         } else {
-            console.log("Sipariş gönderilirken hata oluştu.");
+            cart.push({...product, quantity: 1}); // Yeni ürün ekle, miktar 1
         }
-    } catch (error) {
-        console.error("Hata oluştu:", error);
-        alert("Sipariş kaydedilirken bir hata oluştu.");
+        updateCart(); // Sepeti güncelle
     }
-});
 
-// Ürünleri sayfa yüklendiğinde getir
-window.onload = fetchProducts;
+    function updateCart() {
+        const cartItemsContainer = document.getElementById("cart-items");
+        cartItemsContainer.innerHTML = ''; // Sepeti temizle
 
-// Kategori seçildiğinde ürünleri filtrele
-document.getElementById("category-select").addEventListener("change", fetchProducts);
+        cart.forEach(product => {
+            const cartItem = document.createElement("div");
+            cartItem.classList.add("cart-item");
 
+            const price = parseFloat(product.price);
+            const quantity = product.quantity;
+            const totalPrice = isNaN(price) || isNaN(quantity) ? 0 : price * quantity;
+
+            cartItem.innerHTML = `
+                <img src="${product.image}" alt="${product.name}" class="cart-item-image" />
+                <div class="cart-item-info">
+                    <h4>${product.name}</h4>
+                    <p>Quantity: ${quantity}</p>
+                    <p>Price: ${totalPrice.toFixed(2)}</p>
+                </div>
+            `;
+
+            cartItemsContainer.appendChild(cartItem);
+        });
+
+        const cartSection = document.getElementById("cart");
+        cartSection.style.display = cart.length > 0 ? "block" : "none"; 
+
+        const emptyMessage = document.getElementById("cart-empty-message");
+        if (emptyMessage) {
+            emptyMessage.classList.toggle("show", cart.length === 0); 
+        }
+    }
+
+    // Sayfa yüklendiğinde ürünleri getirme
+    window.onload = fetchProducts;
+
+    // Kategori seçildiğinde ürünleri filtreleme
+    document.getElementById("category-select").addEventListener("change", fetchProducts);
 
 
 
