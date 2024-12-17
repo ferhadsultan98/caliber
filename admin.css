@@ -1,7 +1,7 @@
 @import url(https://db.onlinewebfonts.com/c/88ec722aea6da3c9f67189591d5f3a6e?family=Batangas);
 /* Genel container ayarları */
 https://github.com/ferhadsultan98/caliber/blob/main/admin.html
- #login-body {
+ html{
             display: flex;
   flex-direction: column;
 height: 90vh;
