@@ -19,27 +19,7 @@ document.getElementById('login-form').addEventListener('submit', function(event)
   }
 });
 
-// Sayfa yüklendiğinde oturum kontrolü yap
-window.addEventListener('load', function() {
-  const loggedIn = localStorage.getItem('loggedIn');
-  
-  // URL'de /admin varsa, kullanıcı giriş yapmamışsa login ekranına yönlendir
-  const currentURL = window.location.pathname;
-  
-  if (currentURL === '/admin' && loggedIn !== 'true') {
-    // Eğer giriş yapılmamışsa login ekranını göster
-    document.getElementById('login-section').style.display = 'block';
-    document.getElementById('admin-panel').style.display = 'none';
-  } else if (loggedIn === 'true') {
-    // Kullanıcı zaten giriş yapmışsa, login bölümünü gizle ve admin panelini göster
-    document.getElementById('login-section').style.display = 'none';
-    document.getElementById('admin-panel').style.display = 'block';
-  } else {
-    // Diğer durumlarda login ekranını göster
-    document.getElementById('login-section').style.display = 'block';
-    document.getElementById('admin-panel').style.display = 'none';
-  }
-});
+
 
 // Çıkış yapma işlemi
 document.getElementById('logout-btn').addEventListener('click', function() {
