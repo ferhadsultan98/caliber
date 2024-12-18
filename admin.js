@@ -29,10 +29,16 @@ document.getElementById('logout-btn').addEventListener('click', logout);
 // Check login state on page load
 window.addEventListener('load', function() {
   if (localStorage.getItem('isLoggedIn') === 'true') {
+    // If logged in, hide login form and show admin panel
     document.querySelector('.container').style.display = 'none'; // Hide login container
     document.getElementById('admin-panel').style.display = 'block'; // Show admin panel
+  } else {
+    // If not logged in, show login form and hide admin panel
+    document.querySelector('.container').style.display = 'block'; // Show login container
+    document.getElementById('admin-panel').style.display = 'none'; // Hide admin panel
   }
 });
+
 
 
 
