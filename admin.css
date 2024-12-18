@@ -1,65 +1,90 @@
 @import url(https://db.onlinewebfonts.com/c/88ec722aea6da3c9f67189591d5f3a6e?family=Batangas);
 /* Genel container ayarları */
-         html, body {
-  height: 100%;
-  margin: 0;  /* Remove default margin */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Container styling */
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;  /* Full viewport height */
-  background-color: #f4f4f9;
-  background-image: url(./assets/backimg.jpg);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #00bcd4, #00796b);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #fff;
 }
-    /* Login Container (child of .container) */
-    .login-container {
-      background-color: #fff;
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 400px;
-      text-align: center;
-      border: 1px solid #ddd;
- 
-    }
 
-    .login-container h1 {
-      font-size: 28px;
-      margin-bottom: 20px;
-      color: #333;
-    }
+.login-container {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+}
 
-    .login-container input {
-      width: 100%;
-      padding: 12px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-sizing: border-box;
-    }
+.login-container .login-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
 
-    .login-container #login-btn {
-      width: 100%;
-      padding: 12px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-    }
+.login-container .login-header h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 10px;
+}
 
-    .login-container #login-btn:hover {
-      background-color: #0056b3;
-    }
+.login-container .login-header p {
+    font-size: 16px;
+    color: #666;
+}
 
+.login-container .input-group {
+    margin-bottom: 25px;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    outline: none;
+    background: #f5f5f5;
+    transition: all 0.3s ease;
+}
+
+.login-container input[type="text"]:focus,
+.login-container input[type="password"]:focus {
+    border-color: #00bcd4;
+    background: #ffffff;
+}
+
+.login-container .login-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #00bcd4;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-container .login-btn:hover {
+    background-color: #008c99;
+}
+
+.login-container .error-message {
+    color: red;
+    text-align: center;
+    margin-top: 15px;
+}
 
 
 /* Admin Panel */
