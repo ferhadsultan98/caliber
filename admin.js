@@ -1,53 +1,53 @@
-// Login function
-function login() {
-  const username = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
+// Sayfa yüklendiğinde giriş kontrolü
+      window.onload = function () {
+        if (localStorage.getItem('isLoggedIn') === 'true') {
+          // Eğer giriş yapılmışsa, login formunu gizle ve admin panelini göster
+          document.getElementById('login-container').style.display = 'none'; // Login formunu gizle
+          document.getElementById('admin-panel').style.display = 'block'; // Admin panelini göster
+        } else {
+          // Eğer giriş yapılmamışsa, login formunu göster ve admin panelini gizle
+          document.getElementById('login-container').style.display = 'block'; // Login formunu göster
+          document.getElementById('admin-panel').style.display = 'none'; // Admin panelini gizle
+        }
+      };
 
-  if (username === 'admin' && password === '2024205') {
-    document.querySelector('.container').style.display = 'none'; // Hide login container
-    document.getElementById('admin-panel').style.display = 'block'; // Show admin panel
-    localStorage.setItem('isLoggedIn', 'true'); // Store login state in localStorage
-    setTimeout(function() {
-      showModalWindow('Daxil olunur!..');
-    }, 3000); // Simulate loading time
-  } else {
-    showModalWindow('İstifadəçi adı və ya parol səhvdir!');
-  }
-}
+      // Giriş formunu işleme
+      document.getElementById('loginForm').addEventListener('submit', async function (event) {
+        event.preventDefault();
 
-// Logout function
-function logout() {
-  document.getElementById('admin-panel').style.display = 'none'; // Hide admin panel
-  document.querySelector('.container').style.display = 'block'; // Show login container again
-  localStorage.removeItem('isLoggedIn'); // Remove login state from localStorage
-}
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        document.getElementById('error-message').textContent = '';
 
-// Ensure that the DOM is fully loaded before adding event listeners
-document.addEventListener('DOMContentLoaded', function() {
-  // Add event listener for login button
-  const loginBtn = document.getElementById('login-btn');
-  if (loginBtn) {
-    loginBtn.addEventListener('click', login);
-  }
+        try {
+          // Burada geçici olarak JSON verisini kontrol ediyoruz
+          const response = await fetch('https://raw.githubusercontent.com/ferhadsultan98/caliber/main/pass.json');
+          const data = await response.json();
 
-  // Add event listener for logout button
-  const logoutBtn = document.getElementById('logout-btn');
-  if (logoutBtn) {
-    logoutBtn.addEventListener('click', logout);
-  }
+          const user = data.find((user) => user.username === username && user.password === password);
+          if (user) {
+            // Başarılı giriş, localStorage'a kaydet
+            localStorage.setItem('isLoggedIn', 'true');
+            // Admin Panelini göster
+            document.getElementById('login-container').style.display = 'none';
+            document.getElementById('admin-panel').style.display = 'block';
+          } else {
+            document.getElementById('error-message').textContent = 'Kullanıcı adı veya şifre yanlış!';
+          }
+        } catch (error) {
+          console.error('Bir hata oluştu:', error);
+          document.getElementById('error-message').textContent = 'Bir hata oluştu. Lütfen tekrar deneyin.';
+        }
+      });
 
-  // Check login state on page load
-  if (localStorage.getItem('isLoggedIn') === 'true') {
-    // If logged in, hide login form and show admin panel
-    document.querySelector('.container').style.display = 'none'; // Hide login container
-    document.getElementById('admin-panel').style.display = 'block'; // Show admin panel
-  } else {
-    // If not logged in, show login form and hide admin panel
-    document.querySelector('.container').style.display = 'block'; // Show login container
-    document.getElementById('admin-panel').style.display = 'none'; // Hide admin panel
-  }
-});
-
+      // Çıkış işlemi
+      document.getElementById('logout-btn').addEventListener('click', function () {
+        // localStorage'dan giriş bilgisini sil
+        localStorage.removeItem('isLoggedIn');
+        // Login sayfasına geri dön
+        document.getElementById('login-container').style.display = 'block';
+        document.getElementById('admin-panel').style.display = 'none';
+      });
 
 
 
