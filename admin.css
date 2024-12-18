@@ -135,7 +135,7 @@
 #admin-panel #add-product-section, #orders-section{
   padding: 15px;
 }
-#admin-panel nav a {
+nav #orders-btn, #add-product-btn {
   color: #fff; /* White text */
   font-size: 18px;
   text-decoration: none; /* Remove underline */
@@ -145,7 +145,7 @@
   transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
 }
 
-#admin-panel nav a:hover {
+nav a:hover {
   background-color: #007bff; /* Blue background on hover */
   color: #fff; /* White text on hover */
 }
