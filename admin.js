@@ -66,6 +66,7 @@ window.addEventListener('load', function() {
         }
       });
     // Function to hide all sections
+// Function to hide all sections
 function hideAllSections() {
     // Hide both sections
     document.getElementById("add-product-section").style.display = "none";
@@ -88,7 +89,9 @@ document.getElementById("orders-btn").addEventListener("click", function () {
 });
 
 // Show "Add Product" section by default when the page loads
-showSection("add-product-section");  // By default show "Add Product" section
+window.onload = function() {
+    showSection("add-product-section");  // By default show "Add Product" section
+};
 
 
    
