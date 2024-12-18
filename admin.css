@@ -91,6 +91,7 @@ body {
 #admin-panel {
   width: 80%;
   margin: auto;
+  height: 100%;
 }
 #admin-panel nav .logout-btn{
    background-color: #f44336;  
