@@ -13,16 +13,15 @@ function login() {
     showModalWindow('İstifadəçi adı və ya parol səhvdir!');
   }
 }
-
+document.getElementById('login-btn').addEventListener('click', login);
 // Logout function
 function logout() {
   document.getElementById('admin-panel').style.display = 'none'; // Hide admin panel
   document.querySelector('.container').style.display = 'block'; // Show login container again
 }
-
 // Event listeners
 document.getElementById('logout-btn').addEventListener('click', logout);
-document.getElementById('login-btn').addEventListener('click', login);
+
 
 
 
