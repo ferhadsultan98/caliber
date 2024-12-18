@@ -15,7 +15,7 @@ function login() {
   }
 }
 
-document.getElementById('login-btn').addEventListener('click', login);
+
 
 // Logout function
 function logout() {
