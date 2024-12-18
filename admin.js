@@ -1,5 +1,4 @@
 // Login function
-
 function login() {
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
@@ -7,6 +6,7 @@ function login() {
   if (username === 'admin' && password === '2024205') {
     document.querySelector('.container').style.display = 'none'; // Hide login container
     document.getElementById('admin-panel').style.display = 'block'; // Show admin panel
+    localStorage.setItem('isLoggedIn', 'true'); // Store login state in localStorage
     setTimeout(function() {
       showModalWindow('Daxil olunur!..');
     }, 3000); // Simulate loading time
@@ -14,14 +14,26 @@ function login() {
     showModalWindow('İstifadəçi adı və ya parol səhvdir!');
   }
 }
-document.getElementById('login-btn').addEventListener('click', login);
-// Logout function
 
+document.getElementById('login-btn').addEventListener('click', login);
+
+// Logout function
 function logout() {
   document.getElementById('admin-panel').style.display = 'none'; // Hide admin panel
   document.querySelector('.container').style.display = 'block'; // Show login container again
+  localStorage.removeItem('isLoggedIn'); // Remove login state from localStorage
 }
+
 document.getElementById('logout-btn').addEventListener('click', logout);
+
+// Check login state on page load
+window.addEventListener('load', function() {
+  if (localStorage.getItem('isLoggedIn') === 'true') {
+    document.querySelector('.container').style.display = 'none'; // Hide login container
+    document.getElementById('admin-panel').style.display = 'block'; // Show admin panel
+  }
+});
+
 
 
 
