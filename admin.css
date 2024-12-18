@@ -135,7 +135,7 @@
 #admin-panel #add-product-section, #orders-section{
   padding: 15px;
 }
-nav #orders-btn, #add-product-btn {
+nav a {
   color: #fff; /* White text */
   font-size: 18px;
   text-decoration: none; /* Remove underline */
