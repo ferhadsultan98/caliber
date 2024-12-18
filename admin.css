@@ -67,7 +67,7 @@
   width: 80%;
   margin: auto;
 }
-.logout-btn{
+nav .logout-btn{
    background-color: #f44336;  
   color: white; 
   border: none;  
@@ -80,11 +80,11 @@
   cursor: pointer;  
   transition: all 0.3s ease; 
 } 
-.logout-btn:hover {
+nav .logout-btn:hover {
   background-color: #d32f2f;  
   transform: scale(1.05);  
 }
-#admin-panel .logout-btn:active {
+nav .logout-btn:active {
   background-color: #c62828; 
   transform: scale(0.98);  
 }
