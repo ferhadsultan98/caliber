@@ -67,7 +67,7 @@
   width: 80%;
   margin: auto;
 }
-nav .logout-btn{
+#admin-panel nav .logout-btn{
    background-color: #f44336;  
   color: white; 
   border: none;  
@@ -80,11 +80,11 @@ nav .logout-btn{
   cursor: pointer;  
   transition: all 0.3s ease; 
 } 
-nav .logout-btn:hover {
+#admin-panel nav .logout-btn:hover {
   background-color: #d32f2f;  
   transform: scale(1.05);  
 }
-nav .logout-btn:active {
+#admin-panel nav .logout-btn:active {
   background-color: #c62828; 
   transform: scale(0.98);  
 }
@@ -145,14 +145,14 @@ nav .logout-btn:active {
   transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
 }
 
-nav a:hover {
+#admin-panel nav a:hover {
   background-color: #007bff; /* Blue background on hover */
   color: #fff; /* White text on hover */
 }
 #admin-panel nav a:hover {
   color: #4CAF50;
 }
-nav a:active {
+#admin-panel nav a:active {
   background-color: #0056b3; /* Darker blue when active */
 }
 
