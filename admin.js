@@ -48,11 +48,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// Optional: Function to show a modal window with a message
-function showModalWindow(message) {
-  alert(message); // Replace with your modal window code
-}
-
 
 
 
