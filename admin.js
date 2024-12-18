@@ -15,8 +15,6 @@ function login() {
   }
 }
 
-
-
 // Logout function
 function logout() {
   document.getElementById('admin-panel').style.display = 'none'; // Hide admin panel
@@ -24,10 +22,21 @@ function logout() {
   localStorage.removeItem('isLoggedIn'); // Remove login state from localStorage
 }
 
-document.getElementById('logout-btn').addEventListener('click', logout);
+// Ensure that the DOM is fully loaded before adding event listeners
+document.addEventListener('DOMContentLoaded', function() {
+  // Add event listener for login button
+  const loginBtn = document.getElementById('login-btn');
+  if (loginBtn) {
+    loginBtn.addEventListener('click', login);
+  }
 
-// Check login state on page load
-window.addEventListener('load', function() {
+  // Add event listener for logout button
+  const logoutBtn = document.getElementById('logout-btn');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', logout);
+  }
+
+  // Check login state on page load
   if (localStorage.getItem('isLoggedIn') === 'true') {
     // If logged in, hide login form and show admin panel
     document.querySelector('.container').style.display = 'none'; // Hide login container
@@ -38,6 +47,11 @@ window.addEventListener('load', function() {
     document.getElementById('admin-panel').style.display = 'none'; // Hide admin panel
   }
 });
+
+// Optional: Function to show a modal window with a message
+function showModalWindow(message) {
+  alert(message); // Replace with your modal window code
+}
 
 
 
