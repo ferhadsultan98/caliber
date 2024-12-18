@@ -1,17 +1,22 @@
 @import url(https://db.onlinewebfonts.com/c/88ec722aea6da3c9f67189591d5f3a6e?family=Batangas);
 /* Genel container ayarları */
-         .container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 90vh;
-      background-color: #f4f4f9;
-background-image: url(./assets/backimg.jpg);
+         html, body {
+  height: 100%;
+  margin: 0;  /* Remove default margin */
+}
+
+/* Container styling */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;  /* Full viewport height */
+  background-color: #f4f4f9;
+  background-image: url(./assets/backimg.jpg);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-    }
-
+}
     /* Login Container (child of .container) */
     .login-container {
       background-color: #fff;
