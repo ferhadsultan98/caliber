@@ -7,7 +7,23 @@
     <link rel="stylesheet" href="admin.css" />
   </head>
   <body>
-    
+    <!-- Login Sayfası -->
+  <div class="login-container" id="login-container">
+    <div class="login-header">
+        <h2>Giriş Yap</h2>
+        <p>Lütfen hesabınıza giriş yapın</p>
+    </div>
+    <form id="loginForm">
+        <div class="input-group">
+            <input type="text" id="username" name="username" placeholder="Kullanıcı adınızı girin" required />
+        </div>
+        <div class="input-group">
+            <input type="password" id="password" name="password" placeholder="Şifrenizi girin" required />
+        </div>
+        <button type="submit" class="login-btn">Giriş Yap</button>
+        <div class="error-message" id="error-message"></div>
+    </form>
+</div>
 
 
    
