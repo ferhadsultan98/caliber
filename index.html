@@ -138,26 +138,61 @@
 
 
 <!-- Footer Section -->
-<footer class="footer">
-  <div class="footer-content">
-      <div class="footer-left">
-          <p>&copy; 2024 CALIBRE.AZ - All Rights Reserved</p>
+<footer>
+    <div class="footer-container">
+      <!-- Hakkında ve İletişim -->
+      <div class="footer-section about">
+        <h3><span class="parfum-icon">&#128138;</span> Parfüm Dünyası</h3>
+        <p>Özel parfümler ile kendinizi ifade edin. Her anınızı unutulmaz kılacak parfüm koleksiyonumuzu keşfedin.</p>
+        <ul>
+          <li><a href="#">Hakkımızda</a></li>
+          <li><a href="#">İletişim</a></li>
+          <li><a href="#">Gizlilik Politikası</a></li>
+        </ul>
       </div>
-      <div class="footer-center">
-          <p>Bringing Luxury Scents to Your Life</p>
+
+      <!-- Hızlı Linkler -->
+      <div class="footer-section quick-links">
+        <h3><span class="parfum-icon">&#128138;</span> Hızlı Linkler</h3>
+        <ul>
+          <li><a href="#">Yeni Parfümler</a></li>
+          <li><a href="#">En Çok Satanlar</a></li>
+          <li><a href="#">Erkek Parfümleri</a></li>
+          <li><a href="#">Kadın Parfümleri</a></li>
+        </ul>
       </div>
-      <div class="footer-right">
-          <ul>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Terms of Service</a></li>
-              <li><a href="#">Contact Us</a></li>
-          </ul>
+
+      <!-- Sosyal Medya -->
+      <div class="footer-section social-media">
+        <h3><span class="parfum-icon">&#128138;</span> Bizi Takip Edin</h3>
+        <div class="social-icons">
+          <a href="#" target="_blank" class="social-icon"><i class="fab fa-facebook"></i></a>
+          <a href="#" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+          <a href="#" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+          <a href="#" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a>
+        </div>
       </div>
+
+      <!-- Abone Ol -->
+      <div class="footer-section subscribe">
+        <h3><span class="parfum-icon">&#128138;</span> Abone Ol</h3>
+        <p>En yeni parfümler, kampanyalar ve indirimler hakkında bilgi almak için abone olun.</p>
+        <form id="subscribeForm">
+          <input type="email" id="email" placeholder="Email adresinizi girin..." required>
+          <button type="submit">Abone Ol</button>
+        </form>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal Pencere -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Teşekkürler!</h2>
+      <p>Başarıyla abone oldunuz. En yeni parfümler ve fırsatlar hakkında sizi bilgilendireceğiz.</p>
+    </div>
   </div>
-  <div class="footer-bottom">
-      <p>Crafted with love, elegance, and precision.</p>
-  </div>
-</footer>
 
 
 <script src="parfume.js" type="module"></script>
