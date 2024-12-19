@@ -617,87 +617,181 @@ header {
 
 /* Footer Section */
 
-.footer {
-  background: linear-gradient(
-    135deg,
-    #5e4b8b,
-    #3e3a55
-  ); /* Lüks mor ve gri gradient */
-  color: #f1f1f1;
-  padding: 40px 0;
-  font-family: "Lora", serif;
-  text-align: center;
-  position: relative;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Hafif gölge etkisi */
-  border-top: 5px solid #ffb400; /* Altın sarısı şerit */
+footer {
+  background: linear-gradient(45deg, #f06, #ff4081); /* Şık renk geçişi */
+  color: white;
+  padding: 50px 20px;
+  font-family: 'Arial', sans-serif;
+  text-align: left;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* İçerik düzeni */
-.footer .footer-content {
+footer .footer-container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* Sol alan */
-.footer .footer-left p {
-  font-size: 18px;
-  font-weight: bold;
-  color: #f1f1f1;
-  opacity: 0.8;
-}
-
-/* Ortada metin */
-.footer .footer-center p {
-  font-size: 20px;
-  font-style: italic;
-  color: #ffb400; /* Altın sarısı metin */
-  letter-spacing: 2px;
-}
-
-/* Sağdaki bağlantılar */
-.footer .footer-right ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
+  flex-wrap: wrap;
   gap: 30px;
 }
 
-.footer .footer-right ul li {
-  display: inline;
+footer .footer-section {
+  flex: 1;
+  min-width: 220px;
+  margin: 0 20px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.footer .footer-right ul li a {
+/* Başlıklar */
+footer h3 {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+footer p {
+  color: #f7f7f7;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+/* Liste ve Linkler */
+footer ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+footer ul li {
+  margin: 10px 0;
+}
+
+footer ul li a {
+  color: #f7f7f7;
   text-decoration: none;
-  color: #ccc;
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-  transition: color 0.3s ease, transform 0.3s ease;
+  font-size: 16px;
+  transition: color 0.3s;
 }
 
-.footer .footer-right ul li a:hover {
-  color: #ffb400; /* Hover efekti */
-  transform: scale(1.1); /* Hoverda büyüme efekti */
+footer ul li a:hover {
+  color: #ff4081;
 }
 
-/* Alt açıklama */
-.footer .footer-bottom {
+/* Sosyal Medya İkonları */
+footer .social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+footer .social-icon {
+  font-size: 30px;
+  color: white;
+  transition: color 0.3s;
+}
+
+footer .social-icon:hover {
+  color: #ff4081;
+}
+
+/* Abone Ol Formu */
+footer .subscribe form {
+  display: flex;
+  gap: 10px;
   margin-top: 20px;
-  font-size: 14px;
-  color: #bbb;
-  font-weight: 400;
-  letter-spacing: 0.5px;
 }
 
-.footer .footer-bottom p {
-  font-style: italic;
-  opacity: 0.8;
+footer input[type="email"] {
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  width: 250px;
 }
+
+footer button {
+  padding: 12px 20px;
+  background-color: #ff4081;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+footer button:hover {
+  background-color: #e0306b;
+}
+
+/* Modal Pencere Tasarımı */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  animation: fadeIn 0.5s;
+}
+
+.modal .modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 50%;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal .close {
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.modal .close:hover,
+.modal .close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Hover ve Animasyon Efektleri */
+footer .footer-section:hover {
+  transform: translateY(-10px);
+  opacity: 0.9;
+}
+
+/* Mobil Uyumluluk */
+@media (max-width: 768px) {
+  footer .footer-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  footer .footer-section {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  footer input[type="email"] {
+    width: 220px;
+  }
+
+  footer button {
+    width: 100%;
+  }
+}
+
 
 /* Slider Section */
 .slider-container {
@@ -856,14 +950,6 @@ header {
 
   .team-member {
     width: 80%; /* Üye kartları mobilde daha geniş */
-  }
-  .footer .footer-content {
-    flex-direction: column;
-    text-align: center;
-  }
-  .footer .footer-right ul {
-    flex-direction: column;
-    gap: 15px;
   }
 }
 @media (max-width: 480px) {
