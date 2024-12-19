@@ -618,7 +618,7 @@ header {
 /* Footer Section */
 
 footer {
-  background: linear-gradient(to right, rgb(255, 248, 225), black); /* Şık renk geçişi */
+  background: linear-gradient(to right, rgb(235 235 235), #bac347); /* Şık renk geçişi */
   color: white;
   padding: 50px 20px;
   font-family: 'Arial', sans-serif;
