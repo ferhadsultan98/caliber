@@ -242,12 +242,12 @@ async function saveOrderToFirebase(cart) {
             timestamp: timestamp, // Sipariş zamanı (tarih ve saat)
         });
 
-        alert("Sipariş başarıyla kaydedildi!");
+        showModalWindow("Sipariş başarıyla kaydedildi!");
         cart = []; // Siparişi başarılı kaydettikten sonra sepeti sıfırla
         updateCart(); // Sepeti güncelle
     } catch (error) {
         console.error("Firebase'e sipariş kaydedilirken hata:", error);
-        alert("Sipariş kaydedilirken bir hata oluştu.");
+        showModalWindow("Sipariş kaydedilirken bir hata oluştu.");
     }
 }
 
@@ -257,7 +257,7 @@ document.getElementById("checkout-btn").addEventListener("click", function() {
     if (cart.length > 0) {
         saveOrderToFirebase(cart);
     } else {
-        alert("Sepetinizde ürün yok!");
+        showModalWindow("Sepetinizde ürün yok!");
     }
 });
 
@@ -339,30 +339,13 @@ document.querySelector('.contact-form').addEventListener('submit', function (e) 
 // Footer
 
 // Modal pencere
-var modal = document.getElementById("myModal");
-var span = document.getElementsByClassName("close")[0];
-
-// Formun gönderilmesi
 var form = document.getElementById("subscribeForm");
 form.addEventListener("submit", function(event) {
-  event.preventDefault(); // Sayfa yenilenmesini engelle
-  
-  // Modal'ı aç
-  modal.style.display = "block";
-  
-  // Formu temizle
-  form.reset();
+    event.preventDefault(); // Sayfa yenilenmesini engelle
+    
+    // Modal'ı aç
+    showModalWindow("Aboneliğiniz başarıyla alındı!");
+    
+    // Formu temizle
+    form.reset();
 });
-
-// Modal'ı kapat
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// Modal dışına tıklanırsa da kapat
-window.onclick = function(event) {
-  if (event.target === modal) {
-    modal.style.display = "none";
-  }
-}
-
