@@ -344,7 +344,7 @@ form.addEventListener("submit", function(event) {
     event.preventDefault(); // Sayfa yenilenmesini engelle
     
     // Modal'ı aç
-    showModalWindow("Aboneliğiniz başarıyla alındı!");
+    showModalWindow("Sayta abunə oldunuz");
     
     // Formu temizle
     form.reset();
