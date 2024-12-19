@@ -336,3 +336,33 @@ document.querySelector('.contact-form').addEventListener('submit', function (e) 
     }
 });
 
+// Footer
+
+// Modal pencere
+var modal = document.getElementById("myModal");
+var span = document.getElementsByClassName("close")[0];
+
+// Formun gönderilmesi
+var form = document.getElementById("subscribeForm");
+form.addEventListener("submit", function(event) {
+  event.preventDefault(); // Sayfa yenilenmesini engelle
+  
+  // Modal'ı aç
+  modal.style.display = "block";
+  
+  // Formu temizle
+  form.reset();
+});
+
+// Modal'ı kapat
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// Modal dışına tıklanırsa da kapat
+window.onclick = function(event) {
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+}
+
