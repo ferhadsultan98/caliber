@@ -618,7 +618,7 @@ header {
 /* Footer Section */
 
 footer {
-  background: linear-gradient(45deg, #f06, #ff4081); /* Şık renk geçişi */
+  background: linear-gradient(to right, rgb(255, 248, 225), black); /* Şık renk geçişi */
   color: white;
   padding: 50px 20px;
   font-family: 'Arial', sans-serif;
@@ -671,7 +671,7 @@ footer ul li a {
 }
 
 footer ul li a:hover {
-  color: #ff4081;
+  color: gray;
 }
 
 /* Sosyal Medya İkonları */
@@ -765,11 +765,7 @@ footer button:hover {
   to { opacity: 1; }
 }
 
-/* Hover ve Animasyon Efektleri */
-footer .footer-section:hover {
-  transform: translateY(-10px);
-  opacity: 0.9;
-}
+
 
 /* Mobil Uyumluluk */
 @media (max-width: 768px) {
